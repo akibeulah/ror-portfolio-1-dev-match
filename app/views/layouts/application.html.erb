@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SimplecodecastsSaas</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <style>
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+  <div class="container" style="flex-wrap: nowrap">
+
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-nav-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: 'navbar-brand', style: "font-size: 2.5rem;" do %>
+        <i class="fab fa-dev"></i>
+        Dev Match
+      <% end %>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-nav-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "About", about_path, style: "font-size: 2rem;" %></li>
+        <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;" %></li>
+      </ul>
+    </div> <!--      /.navbar-collapse-->
+  </div>
+</nav>
+
+<div class="container">
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
+</html>
