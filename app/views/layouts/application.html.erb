@@ -37,7 +37,6 @@
           <li><%= link_to "Sign Out", destroy_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
       <% else %>
           <li><%= link_to "Sign In", new_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
-          <li><%= link_to "Sign Up", new_user_registration_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
         <% end %>
         <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
       </ul>

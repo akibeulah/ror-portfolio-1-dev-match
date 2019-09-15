@@ -1,4 +1,22 @@
 <div class="jumbotron text-center">
   <h1>Welcome to Dev Match</h1>
   <h2>A membership site where entrepreneurs can meet developers.</h2>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="well text-center">
+        <h2>Basic Membership</h2>
+        <h4>Sign up for the free plan and get basic access to the community.</h4>
+        <br />
+        <%= link_to "Sign Up Free", new_user_registration_path, style: "font-size: 2rem;" , class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="well text-center">
+        <h2>Professional Membership</h2>
+        <h4>Sign up for the Professional plan at $10/month and get full access to the community with their contact information.</h4>
+        <%= link_to "Sign Up Pro", new_user_registration_path, style: "font-size: 2rem;" , class: 'btn btn-warn btn-block' %>
+      </div>
+    </div>
+  </div>
 </div>
