@@ -32,8 +32,14 @@
 
     <div class="collapse navbar-collapse" id="main-nav-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "About", about_path, style: "font-size: 2rem;" %></li>
-        <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;" %></li>
+        <li><%= link_to "About", about_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+        <% if current_user %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+      <% else %>
+          <li><%= link_to "Sign In", new_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+          <li><%= link_to "Sign Up", new_user_registration_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+        <% end %>
+        <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
       </ul>
     </div> <!--      /.navbar-collapse-->
   </div>
@@ -41,7 +47,7 @@
 
 <div class="container">
   <% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "alert alert-#{key}" %>
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
   <% end %>
   <%= yield %>
 </div>
