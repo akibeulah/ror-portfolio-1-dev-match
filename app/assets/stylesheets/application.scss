@@ -17,6 +17,19 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-form#new_contact {
-  width: 100%;
+.btn-yellow {
+  background: rgb(253, 255, 0);
+  color: #ffffff;
+  border: none;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn-yellow:hover, .btn-yellow:focus {
+  background: rgb(255, 230, 0);
+}
+
+.btn-yellow:active {
+  background: rgb(255, 200, 0);
 }
