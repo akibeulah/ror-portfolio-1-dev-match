@@ -40,7 +40,7 @@
         <% # noinspection RubyResolve
            if current_user %>
           <li><%= # noinspection RubyResolve
-                  link_to "Sign Out", destroy_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+                  link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
       <% else %>
           <li><%= # noinspection RubyResolve
                   link_to "Sign In", new_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>

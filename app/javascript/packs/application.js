@@ -24,15 +24,16 @@ $(document).ready(function () {
         event.preventDefault();
         $('input[type=submit]').prop('disabled', true);
         var error = false;
-        var ccNUm = $('#card_number').val(),
+        var ccNum = $('#card_number').val(),
             cvcNum = $('#card_code').val(),
             expMonth = $('#card_month').val(),
             expYear = $('#card_year').val();
-
-        if(!error) {
+        ccNum.replace(/\s/g, '');
+        console.log(ccNum);
+        if (!error) {
             // Retrieve Stripe Token
             Stripe.createToken({
-                number: ccNUm,
+                number: ccNum,
                 cvc: cvcNum,
                 expMonth: expMonth,
                 expYear: expYear
@@ -44,19 +45,22 @@ $(document).ready(function () {
     function stripeResponseHandler(status, response) {
         // Get form reference
         var f = $("#new_user");
-
         // Retrieve token from response
         var token = response.id;
 
         // Add the token to form
-        f.append('<input type="hidden" name="user[stripe_card_token]" value"' + token + '"/>' );
+        f.append('<input type="hidden" name="user[stripe_card_token]" value="' + token + '"/>');
 
         // Submit form
         f.get(0).submit();
     }
 });
 
-
+$(document).ready(function () {
+    document.getElementById('card_number').addEventListener('input', function (e) {
+        e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+    });
+});
 
 //
 // // Create a Stripe client.

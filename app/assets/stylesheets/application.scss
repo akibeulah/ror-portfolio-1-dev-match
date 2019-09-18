@@ -34,31 +34,33 @@
   background: rgb(255, 200, 0);
 }
 
-//Stripe CSS
-.StripeElement {
-  box-sizing: border-box;
-
-  height: 40px;
-
-  padding: 10px 12px;
-
-  border: 1px solid transparent;
-  border-radius: 4px;
-  background-color: white;
-
-  box-shadow: 0 1px 3px 0 #e6ebf1;
-  -webkit-transition: box-shadow 150ms ease;
-  transition: box-shadow 150ms ease;
+.alert-alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
 }
 
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
 }
 
-.StripeElement--invalid {
-  border-color: #fa755a;
+.side-int {
+  padding: 0 5px;
 }
 
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
+.side-spacing {
+  display: flex;
+  flex-direction: row;
+}
+
+.side-60 {
+  width: 55%;
+  float: left;
+}
+
+.side-40 {
+  width: 35%;
+  float: left;
 }

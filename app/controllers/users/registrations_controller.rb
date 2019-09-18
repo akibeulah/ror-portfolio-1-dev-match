@@ -11,4 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
   end
+
+  private
+  def sign_up_params
+    params.require(:user).permit(:stripe_card_token, :email, :password, :password_confirmation)
+  end
 end
