@@ -2,6 +2,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <%= hidden_field_tag :plan, params[:plan] %>
+  <%= hidden_field_tag :login_count, '0' %>
 
   <div class="field form-group">
     <%= f.label :email %><br/>
