@@ -38,7 +38,7 @@ $mobilePopupMargin: 30px !default;
   // absolutely positioned over the input
   position: relative;
   // keep the input's default inline properties
-  display: inline-block;
+  display: block;
 
   // paul irish says this is ok
   // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
@@ -271,24 +271,21 @@ $mobilePopupMargin: 30px !default;
   }
 }
 
-
-
-
-
-
 @import "sprite";
 
 .iti__flag {
   height: $flagHeight;
   box-shadow: 0px 0px 1px 0px #888;
-  background-image: url("#{$flagsImagePath}#{$flagsImageName}.#{$flagsImageExtension}");
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .iti__flag {background-image: url(../images/flags@2x.png);}
+  }
   background-repeat: no-repeat;
   // empty state
   background-color: #DBDBDB;
   background-position: $flagWidth 0;
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url("#{$flagsImagePath}#{$flagsImageName}@2x.#{$flagsImageExtension}");
+    background-image: url(../images/flags@2x.png);
   }
 }
 

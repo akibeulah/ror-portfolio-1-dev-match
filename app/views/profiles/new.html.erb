@@ -1,33 +1,50 @@
-<%= form_for @contact do |f| %>
-  <div class="col-md-4 col-md-offset-4">
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">Create your user profile.</h1>
+    <p class="text-center">Become a part of the Dev Match community by creating this profile.</p>
+
     <div class="well">
-      <div class="form-group">
-        <%= f.label :first_name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+      <%= 
+          form_for @profile, url: user_profile_path(id: current_user.id) do |f| %>
+        <div class="">
+            <div class="form-group">
+              <%= f.label :first_name, 'Firstname' %>
+              <%= f.text_field :first_name, class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :middle_name %>
-        <%= f.text_field :middle_name, class: "form-control" %>
-      </div>
+            <div class="form-group">
+              <%= f.label :middle_name, 'Middlename' %>
+              <%= f.text_field :middle_name, class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :last_name %>
-        <%= f.text_field :last_name, class: "form-control" %>
-      </div>
+            <div class="form-group">
+              <%= f.label :last_name, 'Lastname' %>
+              <%= f.text_field :last_name, class: "form-control" %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
-      </div>
+            <div class="form-group">
+              <%= f.label :job_title, 'Job Title' %>
+              <%= f.select :job_title, %w(Developer Entrepreneur Investor), {}, class: 'form-control' %>
+            </div>
 
-      <div class="form-group">
-        <%= f.label :comments %>
-        <%= f.text_area :comment, class: 'form-control' %>
-      </div>
+            <div class="form-group">
+              <%= f.label :phone_number, 'Phone Number' %>
+              <%= f.telephone_field :phone_number, class: 'form-control' %>
+            </div>
 
-      <%= f.submit 'Submit', class: "btn btn-dark btn-block" %>
+            <div class="form-group">
+              <%= f.label :contact_email, 'Contact Email' %>
+              <%= f.email_field :contact_email, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: 'form-control' %>
+            </div>
+
+            <%= f.submit 'Update Profile', class: "btn btn-dark btn-block" %>
+          </div>
+      <% end %>
     </div>
   </div>
-
-<% end %>
+</div>

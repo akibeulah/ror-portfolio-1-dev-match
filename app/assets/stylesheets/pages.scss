@@ -2,3 +2,52 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.btn-yellow {
+  background: rgb(255, 230, 0);
+  color: #ffffff;
+  border: none;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn-yellow:hover, .btn-yellow:focus {
+  background: rgb(255, 175, 0);
+  color: #ffffff;
+}
+
+.btn-yellow:active {
+  background: rgb(255, 175, 0);
+  color: #ffffff;
+}
+
+.alert-alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.side-int {
+  padding: 0 5px;
+}
+
+.side-spacing {
+  display: flex;
+  flex-direction: row;
+}
+
+.side-60 {
+  width: 55%;
+  float: left;
+}
+
+.side-40 {
+  width: 35%;
+  float: left;
+}
