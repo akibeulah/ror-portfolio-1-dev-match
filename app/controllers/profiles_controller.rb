@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
         flash[:sucess] = message
         redirect_to user_path(params[:user_id])
       else
+        flash[:error] = "Sorry, the was an issue, please retry."
         render action: :new
       end
     end

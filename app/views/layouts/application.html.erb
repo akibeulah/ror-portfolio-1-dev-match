@@ -11,7 +11,7 @@
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= # noinspection RailsParamDefResolve
       javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
-  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY%>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <style>
   </style>
 </head>
@@ -36,17 +36,24 @@
     <div class="collapse navbar-collapse" id="main-nav-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><%= # noinspection RubyResolve
-                link_to "About", about_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+                link_to "About", about_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
         <% # noinspection RubyResolve
            if current_user %>
           <li><%= # noinspection RubyResolve
-                  link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
-      <% else %>
+                  link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+          <%# if Profile.find(params[:user_id]) %>
+<!--            <li><#%=# noinspection RubyResolve-->
+<!--                   #link_to "Profile", user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>-->
+          <%# else %>
+            <li><%= # noinspection RubyResolve
+                    link_to "Create Profile", new_user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+          <%# end %>
+        <% else %>
           <li><%= # noinspection RubyResolve
-                  link_to "Sign In", new_user_session_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+                  link_to "Sign In", new_user_session_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
         <% end %>
         <li><%= # noinspection RubyResolve
-                link_to "Contact Us", new_contact_path, style: "font-size: 2rem;" , class: 'navbar-btn' %></li>
+                link_to "Contact Us", new_contact_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
       </ul>
     </div> <!--      /.navbar-collapse-->
   </div>

@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for(resource)
-    if current_user.login_count == 0
-      new_user_profile_path(user_id: current_user.id)
-    else
-      root_path
-    end
-    #current_user.login_count
-  end
+  # def after_sign_in_path_for(resource)
+  #   if current_user.login_count == 0
+  #     new_user_profile_path(user_id: current_user.id)
+  #   else
+  #     root_path
+  #   end
+  #   User.find(current_user.id).increment!(:login_count)
+  # end
 
 end
