@@ -1,6 +1,7 @@
+# noinspection RubyResolve
 class ProfilesController < ApplicationController
   def new
-    # user profile form
+    # user profiles form
     @user = User.find(params[:user_id])
     @profile = @user.build_profile
   end
@@ -10,19 +11,15 @@ class ProfilesController < ApplicationController
     @profile = @user.build_profile(profile_params)
 
     if @profile.save
-      if @user.login_count == 0 ? (message = "Profile Created") : (message = "Profile updated")
-        flash[:sucess] = message
-        redirect_to user_path(params[:user_id])
-      else
-        flash[:error] = "Sorry, the was an issue, please retry."
-        render action: :new
-      end
+      flash[:success] = 'Profile Created Successfully.'
+      redirect_to user_path(params[:user_id])
+    else
+      render action: :new
     end
+  end
 
-    private
-
-    def profile_params
-      params.require(:profile).permit(:first_name, :middle_name, :last_name, :job_title, :phone_number, :contact_email, :description)
-    end
+  private
+  def profile_params
+    params.require('profile').permit(:authenticity_token, :profile, :commit, :user_id, :first_name, :middle_name, :last_name, :job_title, :phone_number, :contact_email, :description)
   end
 end
