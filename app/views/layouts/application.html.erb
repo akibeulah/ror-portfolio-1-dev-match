@@ -39,20 +39,21 @@
                 link_to "About", about_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
         <% # noinspection RubyResolve
            if current_user %>
-          <li><%= # noinspection RubyResolve
+          <li><%= #noinspection RubyResolve
                   link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-          <%# if Profile.find(params[:user_id]) %>
-<!--            <li><#%=# noinspection RubyResolve-->
-<!--                   #link_to "Profile", user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>-->
-          <%# else %>
-            <li><%= # noinspection RubyResolve
+          <% if Profile.exists?(user_id: current_user.id) %>
+            <% @profile = Profile.find_by(user_id: current_user.id) %>
+            <li><%= #noinspection RubyResolve
+                    link_to "Profile", user_path(id: @profile.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+          <% else %>
+            <li><%= #noinspection RubyResolve
                     link_to "Create Profile", new_user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-          <%# end %>
+          <% end %>
         <% else %>
           <li><%= # noinspection RubyResolve
                   link_to "Sign In", new_user_session_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
         <% end %>
-        <li><%= # noinspection RubyResolve
+        <li><%= #noinspection RubyResolve
                 link_to "Contact Us", new_contact_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
       </ul>
     </div> <!--      /.navbar-collapse-->

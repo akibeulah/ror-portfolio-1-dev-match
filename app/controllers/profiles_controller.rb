@@ -17,7 +17,7 @@ class ProfilesController < ApplicationController
       render action: :new
     end
   end
-
+#TODO: Create edit function
   private
   def profile_params
     params.require('profile').permit(:authenticity_token, :profile, :commit, :user_id, :first_name, :middle_name, :last_name, :job_title, :phone_number, :contact_email, :description)

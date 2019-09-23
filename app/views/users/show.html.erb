@@ -1,40 +1,27 @@
 <% @profile = Profile.find_by(user_id: current_user.id) %>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="well">
-      <div class="form_group">
-        <span class="form_control">First Name: </span>
-        <span class="form_control"><%= @profile.first_name %></span>
+      <div class="profile_info_group">
+        <span class="profile-name-view"><%= @profile.first_name %></span>
+        <span class="profile-name-view"><%= @profile.middle_name %></span>
+        <span class="profile-name-view"><%= @profile.last_name %></span>
       </div>
-      <div class="form_group">
-        <span class="form_control">Middle Name: </span>
-        <span class="form_control"><%= @profile.middle_name %></span>
+      <div class="profile_info_group">
+        <span class="profile-info-child"><%= @profile.job_title %></span>
       </div>
-      <div class="form_group">
-        <span class="form_control">Last Name: </span>
-        <span class="form_control"><%= @profile.last_name %></span>
+      <% if current_user.plan_id == 2 %>
+        <div class="profile_info_group">
+          <span class="profile-info-child"><%= @profile.phone_number %></span>
+        </div>
+        <div class="profile_info_group">
+          <span class="profile-info-child"><%= @profile.contact_email %></span>
+        </div>
+      <% end %>
+      <div class="profile_info_group">
+        <span class="profile-info-child"><%= @profile.description %></span>
       </div>
-      <div class="form_group">
-        <span class="form_control">Job Title: </span>
-        <span class="form_control"><%= @profile.job_title %></span>
-      </div>
-      <div class="form_group">
-        <span class="form_control">Phone Number: </span>
-        <span class="form_control"><%= @profile.phone_number %></span>
-      </div>
-      <div class="form_group">
-        <span class="form_control"></span>
-        <span class="form_control"></span>
-      </div>
-      <div class="form_group">
-        <span class="form_control"></span>
-        <span class="form_control"></span>
-      </div>
-      <div class="form_group">
-        <span class="form_control"></span>
-        <span class="form_control"></span>
-      </div>
+      <%= link_to "Edit Profile", edit_user_profile_path(current_user.id) %>
     </div>
   </div>
 </div>
