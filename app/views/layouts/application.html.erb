@@ -43,7 +43,7 @@
                   link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
           <% if Profile.exists?(user_id: current_user.id) %>
             <% @profile = Profile.find_by(user_id: current_user.id) %>
-            <% if current_page?(user_path(current_user)) %>
+            <% unless current_page?(user_path(current_user)) %>
               <% if current_user.id == @profile.user_id %>
                 <li><%= #noinspection RubyResolve
                         link_to "Edit Profile", edit_user_profile_path(current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
