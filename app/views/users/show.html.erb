@@ -1,27 +1,28 @@
-<% @profile = Profile.find_by(user_id: current_user.id) %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="well">
-      <div class="profile_info_group">
-        <span class="profile-name-view"><%= @profile.first_name %></span>
-        <span class="profile-name-view"><%= @profile.middle_name %></span>
-        <span class="profile-name-view"><%= @profile.last_name %></span>
-      </div>
-      <div class="profile_info_group">
-        <span class="profile-info-child"><%= @profile.job_title %></span>
-      </div>
-      <% if current_user.plan_id == 2 %>
+      <% if user_signed_in? %>
         <div class="profile_info_group">
-          <span class="profile-info-child"><%= @profile.phone_number %></span>
+          <span class="profile-name-view"><%= current_user.profile.first_name %></span>
+          <span class="profile-name-view"><%= current_user.profile.middle_name %></span>
+          <span class="profile-name-view"><%= current_user.profile.last_name %></span>
         </div>
         <div class="profile_info_group">
-          <span class="profile-info-child"><%= @profile.contact_email %></span>
+          <span class="profile-info-child"><%= current_user.profile.job_title %></span>
         </div>
+        <% if current_user.plan_id == 2 %>
+          <div class="profile_info_group">
+            <span class="profile-info-child"><%= current_user.profile.phone_number %></span>
+          </div>
+          <div class="profile_info_group">
+            <span class="profile-info-child"><%= current_user.profile.contact_email %></span>
+          </div>
+        <% end %>
+        <div class="profile_info_group">
+          <span class="profile-info-child"><%= current_user.profile.description %></span>
+        </div>
+      <% else %>
       <% end %>
-      <div class="profile_info_group">
-        <span class="profile-info-child"><%= @profile.description %></span>
-      </div>
-      <%= link_to "Edit Profile", edit_user_profile_path(current_user.id) %>
     </div>
   </div>
 </div>
