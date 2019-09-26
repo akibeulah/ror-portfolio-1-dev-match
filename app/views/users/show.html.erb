@@ -15,7 +15,7 @@
           <span class="profile-name-view"><%= @user.profile.last_name %></span>
         </div>
         <div class="profile_info_group">
-          <span class="profile-info-child"><%= @user.profile.job_title %></span>
+          <span class="profile-info-child"><%= job_title_icon %><%= @user.profile.job_title %></span>
         </div>
         <% if @user.plan_id == 2 %>
           <div class="profile_info_group">
