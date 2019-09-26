@@ -1,7 +1,6 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 .btn-yellow {
   background: rgb(255, 230, 0);
   color: #ffffff;
@@ -63,12 +62,71 @@
 }
 
 .welcome-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  background: url("../images/image1.jpg"), no-repeat, fixed, center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
 
+.welcome-header h1 {
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+.welcome-header h2 {
+  text-transform: capitalize;
+  font-size: 2.5rem;
+}
+
+#banner {
+  background: linear-gradient(rgba(141, 141, 100, 0.6) 20%, rgba(114, 141, 129, 0.6)) 100%, url("image1.jpg") center/cover no-repeat fixed;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.banner-button {
+  max-width: 28rem;
+  background: rgb(141, 141, 100);
+  border: 2px solid rgb(141, 141, 100);
+  outline: 0.2rem solid rgb(141, 141, 100);
+  outline-offset: 4px;
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #fff;
+  padding: 1rem 2rem;
+  transition: all 1s ease;
+  text-decoration: none;
+}
+
+.banner-button:hover {
+  background: rgba(141, 141, 100, 0.6);
+  border: 2px solid rgba(141, 141, 100, 0.6);
+  outline: 0.2rem solid rgb(141, 141, 100);
+  outline-offset: 4px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.banner-button:active {
+  color: #fff;
+}
+
+.banner-button:visited {
+  color: #fff;
+}
+
+.flash-messages {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.row {
+  margin: 2rem 0;
+  padding: 2rem 0;
 }

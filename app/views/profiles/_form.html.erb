@@ -1,4 +1,4 @@
-<%= form_for @profile, url: `users/#{current_user}/profile` do |f| %>
+<%= form_for @profile, url: new_user_profile_path, :html => {:multipart => true} , :method => :GET do |f| %>
   <div class="">
 
     <div class="form-group">
@@ -14,6 +14,11 @@
     <div class="form-group">
       <%= f.label :last_name, 'Last Name' %>
       <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :avatar, 'Last Name' %>
+      <%= f.file_field :avatar, class: "form-control" %>
     </div>
 
     <div class="form-group">

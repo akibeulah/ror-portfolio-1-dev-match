@@ -10,6 +10,8 @@ gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 # Gem for font-awesome support
 gem 'font-awesome-sass', '~> 5.9.0'
+# Gem for image management
+gem "paperclip", "~> 6.0.0"
 # Gem for bootstrap form... FML.
 gem 'bootstrap_form'
 # Use sqlite3 as the database for Active Record

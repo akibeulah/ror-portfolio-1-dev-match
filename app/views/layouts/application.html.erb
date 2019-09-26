@@ -42,16 +42,9 @@
           <li><%= #noinspection RubyResolve
                   link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
           <% if Profile.exists?(user_id: current_user.id) %>
-            <% @profile = Profile.find_by(user_id: current_user.id) %>
-            <% unless current_page?(user_path(current_user)) %>
-              <% if current_user.id == @profile.user_id %>
-                <li><%= #noinspection RubyResolve
-                        link_to "Edit Profile", edit_user_profile_path(current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-              <% end %>
-            <% else %>
+            <% @profile = current_user.profile %>
               <li><%= #noinspection RubyResolve
                       link_to "Profile", user_path(id: @profile.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-            <% end %>
           <% else %>
             <li><%= #noinspection RubyResolve
                     link_to "Create Profile", new_user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
@@ -67,21 +60,25 @@
   </div>
 </nav>
 
-  <% if current_page?(root_path) %>
+<div class="flash-messages">
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %>
+</div>
+
+<% if current_page?(root_path) %>
+  <div class="banner" id="banner">
     <div class="text-center welcome-header">
       <h1>Welcome to Dev Match</h1>
       <h2>A membership site where entrepreneurs can meet developers.</h2>
+      <br/>
+      <br/>
+      <%= link_to "Explore Community", "#", class: 'banner-button' %>
     </div>
-  <% end %>
+  </div>
+<% end %>
 
 <div class="container">
-  <div class="flash-messages">
-    <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "alert alert-#{key}" %>
-    <% end %>
-  </div>
-
-
   <%= yield %>
 </div>
 </body>

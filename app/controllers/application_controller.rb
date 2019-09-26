@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   protected
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:signup, keys: [:stripe_card_token, :email, :password, :password_confirmation, :login_count])
+    devise_parameter_sanitizer.permit(:signup, keys: [:stripe_card_token, :email, :password, :password_confirmation])
   end
 
   private
