@@ -130,3 +130,22 @@
   margin: 2rem 0;
   padding: 2rem 0;
 }
+
+.show {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.profile-image {
+  border-radius: 50%;
+}
+
+.job-title-icon {
+  text-align: center;
+  border: 2px solid grey;
+  background: #333333;
+  color: #fff;
+  padding: 4px;
+  border-radius: 5px;
+}

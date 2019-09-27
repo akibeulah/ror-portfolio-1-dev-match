@@ -1,0 +1,21 @@
+<div class="col-md-8 col-md-offset-2">
+  <% @users.each do |u| %>
+    <% if u.profile %>
+      <div class="well">
+        <div class="profile-info-group">
+          <div class="profile-image">
+            <%= image_tag u.profile.avatar.url(:thumb) %>
+          </div>
+        </div>
+        <div class="profile_info_group">
+          <span class="profile-name-view"><%= u.profile.first_name %></span>
+          <span class="profile-name-view"><%= u.profile.middle_name %></span>
+          <span class="profile-name-view"><%= u.profile.last_name %></span>
+        </div>
+        <div class="profile_info_group">
+          <span class="profile-info-child"><%= job_title_icon %><%= u.profile.job_title %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

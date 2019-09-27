@@ -43,11 +43,16 @@
                   link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
           <% if Profile.exists?(user_id: current_user.id) %>
             <% @profile = current_user.profile %>
+            <% if current_page?(user_path(current_user)) %>
               <li><%= #noinspection RubyResolve
-                      link_to "Profile", user_path(id: @profile.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+                      link_to "Edit Profile", edit_user_profile_path(user_id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+            <% else %>
+              <li><%= #noinspection RubyResolve
+                      link_to "Profile", user_path(id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+            <% end %>
           <% else %>
             <li><%= #noinspection RubyResolve
-                    link_to "Create Profile", new_user_profile_path(user_id: current_user.id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+                    link_to "Create Profile", new_user_profile_path(current_user), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
           <% end %>
         <% else %>
           <li><%= # noinspection RubyResolve
