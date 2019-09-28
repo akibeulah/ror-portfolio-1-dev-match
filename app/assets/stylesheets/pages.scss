@@ -132,13 +132,24 @@
 }
 
 .show {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
 }
 
 .profile-image {
+  display: inline;
+}
+
+.profile-image img {
   border-radius: 50%;
+}
+
+.show-child {
+  display: flex;
+  flex-direction: column;
+  max-width: 45%;
 }
 
 .job-title-icon {
@@ -146,10 +157,34 @@
   border: 2px solid grey;
   background: #333333;
   color: #fff;
-  padding: 4px;
+  padding: 2px;
   border-radius: 5px;
 }
 
 .profile_info_group {
   padding: .5rem;
+  display: inline;
+}
+
+.well .white-bg {
+  background: white;
+}
+
+.custom-link {
+  color: black;
+  text-decoration: none;
+}
+
+.custom-link:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.custom-title {
+  font-size: 2.2rem;
+  font-weight: bolder;
+}
+
+.subtitle {
+  font-size: 1.2rem;
 }

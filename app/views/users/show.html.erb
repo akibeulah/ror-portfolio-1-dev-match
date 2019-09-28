@@ -1,43 +1,46 @@
 <% @user %>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="show well">
-      <% if user_signed_in? %>
-        <div class="show-child">
-          <div class="profile-info-group">
-            <div class="profile-image">
-              <%= image_tag @user.profile.avatar.url %>
+  <div class="col-md-10 col-md-offset-1">
+    <ul class="list-unstyled">
+      <li>
+        <div class="well <%= cycle('white-bg', '') %> ">
+          <div class="show">
+            <div class="show-child">
+              <div class="profile-info-group">
+                <div class="profile-image">
+                  <%= image_tag @user.profile.avatar.url(:thumb) %>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div class="show-child">
-          <div class="profile_info_group">
-            <span class="profile-name-view"><%= @user.profile.first_name %></span>
-            <span class="profile-name-view"><%= @user.profile.middle_name %></span>
-            <span class="profile-name-view"><%= @user.profile.last_name %></span>
-          </div>
-          <div class="profile_info_group">
-          <span class="profile-info-child">
-            <span class="job-title-icon"><%= job_title_icon %></span>
-            <%= @user.profile.job_title %>
-          </span>
-          </div>
-          <% if @user.plan_id == 2 %>
-            <div class="profile_info_group">
-              <span class="profile-info-child"><%= @user.profile.phone_number %></span>
+            <div class="show-child">
+              <div class="profile_info_group">
+                <span class="profile-name-view"><%= @user.profile.first_name %></span>
+                <span class="profile-name-view"><%= @user.profile.middle_name %></span>
+                <span class="profile-name-view"><%= @user.profile.last_name %></span>
+              </div>
+              <div class="profile_info_group">
+                  <span class="profile-info-child">
+                  <span class="job-title-icon"><%= job_title_icon %></span>
+                    <%= @user.profile.job_title %>
+                  </span>
+              </div>
+              <% if current_user.plan_id == 2 %>
+                <div class="profile_info_group">
+                  <span class="profile-info-child"><%= @user.profile.phone_number %></span>
+                </div>
+                <div class="profile_info_group">
+                  <span class="profile-info-child"><%= @user.profile.contact_email %></span>
+                </div>
+              <% end %>
+              <div class="profile_info_group">
+                <span class="profile-info-child"><%= @user.profile.description %></span>
+              </div>
             </div>
-            <div class="profile_info_group">
-              <span class="profile-info-child"><%= @user.profile.contact_email %></span>
-            </div>
-          <% end %>
-          <div class="profile_info_group">
-            <span class="profile-info-child"><%= @user.profile.description %></span>
           </div>
         </div>
-      <% else %>
-      <% end %>
-    </div>
+      </li>
+    </ul>
   </div>
 </div>
