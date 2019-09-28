@@ -2,7 +2,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user
     
     has_attached_file :avatar, :styles => {
-            :medium => "400*400",
+            :medium => "2500*250",
             :thumb => "100*100"
     }, :default_url => "user_default.jpg"
 
