@@ -1,14 +1,24 @@
 <% if !current_user %>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4 plan-cards">
       <div class="well text-center">
         <h2>Basic Membership</h2>
-        <h4>Sign up for the free plan and get basic access to the community.</h4>
+        <h4>Sign up for the free plan and get basic access to the community. See what it has to offer and be a part of the fam</h4>
         <br/>
-        <%= link_to "Sign Up Free", new_user_registration_path(plan: @basic_plan.id), style: "font-size: 2rem;", class: 'btn btn-primary btn-lg btn-block' %>
+        <%= link_to "Sign Up Free", new_user_registration_path(plan: @basic_plan.id), style: "font-size: 2rem;", class: 'btn btn-secondary btn-lg btn-block' %>
       </div>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-4 plan-cards">
+      <div class="well text-center">
+        <h2>Standard Membership</h2>
+        <h4>Sign up for the Standard plan at $5/month and get boosted ads. Increases your likeliness of interaction
+          information.</h4>
+        <%= link_to "Sign Up Standard", new_user_registration_path(plan: @pro_plan.id), style: "font-size: 2rem;", class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    </div>
+
+    <div class="col-md-4 plan-cards">
       <div class="well text-center">
         <h2>Professional Membership</h2>
         <h4>Sign up for the Professional plan at $10/month and get full access to the community with their contact

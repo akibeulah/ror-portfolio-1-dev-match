@@ -1,99 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Beulah ROR Portfolio Entry 1</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
-
-  <%= # noinspection RailsParamDefResolve
+  <head>
+    <title>Beulah ROR Portfolio Entry 1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= # noinspection RailsParamDefResolve
       stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%#= stylesheet_pack_tag 'javascript/stylesheets/application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%= # noinspection RailsParamDefResolve
+    <%#= stylesheet_pack_tag 'javascript/stylesheets/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= # noinspection RailsParamDefResolve
       javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
-  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-  <style>
-  </style>
-</head>
-
-<body>
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <div class="container" style="flex-wrap: nowrap">
-
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-nav-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to root_path, class: 'navbar-brand', style: "font-size: 2.5rem;" do %>
-        <i class="fab fa-dev"></i>
-        Dev Match
-      <% end %>
-    </div>
-
-    <div class="collapse navbar-collapse" id="main-nav-collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><%= # noinspection RubyResolve
-                link_to "About", about_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to "Community", users_path, style: "font-size: 2rem;", class: 'navbar-btn' %>
-          </li>
-
-          <li>
-            <%= link_to "Account", edit_user_registration_path, style: "font-size: 2rem;", class: 'navbar-btn' %>
-          </li>
-        <% end %>
-        <% # noinspection RubyResolve
-           if user_signed_in? %>
-          <li><%= #noinspection RubyResolve
-                  link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-          <% if Profile.exists?(user_id: current_user.id) %>
-            <% @profile = current_user.profile %>
-            <% if current_page?(user_path(current_user)) %>
-              <li><%= #noinspection RubyResolve
-                      link_to "Edit Profile", edit_user_profile_path(user_id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-            <% else %>
-              <li><%= #noinspection RubyResolve
-                      link_to "Profile", user_path(id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-            <% end %>
-          <% else %>
-            <li><%= #noinspection RubyResolve
-                    link_to "Create Profile", new_user_profile_path(current_user), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+    <style></style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-static-top fixed-top" role="navigation">
+      <div class="container" style="flex-wrap: nowrap">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-nav-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to root_path, class: 'navbar-brand', style: "font-size: 2.5rem;" do %>
+            <i class="fab fa-dev"></i>
+            Dev Match
           <% end %>
-        <% else %>
-          <li><%= # noinspection RubyResolve
-                  link_to "Sign In", new_user_session_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+        </div>
+        <div class="collapse navbar-collapse" id="main-nav-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "About", about_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to "Community", users_path, style: "font-size: 2rem;", class: 'navbar-btn' %>
+              </li>
+              <li>
+                <%= link_to "Account", edit_user_registration_path, style: "font-size: 2rem;", class: 'navbar-btn' %>
+              </li>
+            <% end %>
+            <% if user_signed_in? %>
+              <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+              <% if Profile.exists?(user_id: current_user.id) %>
+                <% @profile = current_user.profile %>
+                <% if current_page?(user_path(current_user)) %>
+                  <li><%= link_to "Edit Profile", edit_user_profile_path(user_id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+                <% else %>
+                  <li><%= link_to "Profile", user_path(id: @profile.user_id), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+                <% end %>
+              <% else %>
+                <li><%= link_to "Create Profile", new_user_profile_path(current_user), style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+              <% end %>
+            <% else %>
+              <li><%= link_to "Sign In", new_user_session_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+            <% end %>
+            <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
+          </ul>
+        </div>
+        
+      </div>
+      <div class="flash-messages">
+        <% flash.each do |key, value| %>
+          <%= content_tag :div, value, class: "alert alert-#{key}" %>
         <% end %>
-        <li><%= #noinspection RubyResolve
-                link_to "Contact Us", new_contact_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
-      </ul>
-    </div> <!--      /.navbar-collapse-->
-  </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="flash-messages">
-  <% flash.each do |key, value| %>
-    <%= content_tag :div, value, class: "alert alert-#{key}" %>
-  <% end %>
-</div>
-
-<% if current_page?(root_path) %>
-  <div class="banner" id="banner">
-    <div class="text-center welcome-header">
-      <h1>Welcome to Dev Match</h1>
-      <h2>A membership site where entrepreneurs can meet developers.</h2>
-      <br/>
-      <br/>
-      <%= link_to "Explore Community", users_path, class: 'banner-button' %>
+    <% if current_page?(root_path) %>
+      <div class="banner" id="banner">
+        <div class="text-center welcome-header">
+          <h1>Welcome to Dev Match</h1>
+          <h2>A membership site where entrepreneurs can meet developers.</h2>
+          <br/>
+          <br/>
+          <%= link_to "Explore Community", users_path, class: 'banner-button' %>
+        </div>
+      </div>
+    <% end %>
+    <div class="container">
+      <%= yield %>
     </div>
-  </div>
-<% end %>
 
-<div class="container">
-  <%= yield %>
-</div>
-</body>
+  </body>
 </html>

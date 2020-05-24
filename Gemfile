@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.5'
+ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -15,12 +15,14 @@ gem "paperclip", "~> 6.0.0"
 # Gem for bootstrap form... FML.
 gem 'bootstrap_form'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4', group: [:development, :test]
+gem 'sqlite3', '~> 1.4.0', group: [:development, :test]
 #Use postgresql as database for production
 group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+gem 'solargraph', group: :development
+gem 'rubocop', group: :development
 # Gem for user authentication
 gem 'devise', '~> 4.7', '>= 4.7.1'
 # Gem for online transactions.
