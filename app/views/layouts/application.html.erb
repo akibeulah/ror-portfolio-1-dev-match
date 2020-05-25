@@ -4,17 +4,15 @@
     <title>Beulah ROR Portfolio Entry 1</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= # noinspection RailsParamDefResolve
-      stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%=  stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%#= stylesheet_pack_tag 'javascript/stylesheets/application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= # noinspection RailsParamDefResolve
-      javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
+    <%= javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <style></style>
   </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-static-top fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-static-top sticky-top" role="navigation">
       <div class="container" style="flex-wrap: nowrap">
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#main-nav-collapse">
@@ -57,7 +55,6 @@
             <li><%= link_to "Contact Us", new_contact_path, style: "font-size: 2rem;", class: 'navbar-btn' %></li>
           </ul>
         </div>
-        
       </div>
       <div class="flash-messages">
         <% flash.each do |key, value| %>
@@ -65,21 +62,25 @@
         <% end %>
       </div>
     </nav>
-
     <% if current_page?(root_path) %>
-      <div class="banner" id="banner">
-        <div class="text-center welcome-header">
-          <h1>Welcome to Dev Match</h1>
-          <h2>A membership site where entrepreneurs can meet developers.</h2>
-          <br/>
-          <br/>
-          <%= link_to "Explore Community", users_path, class: 'banner-button' %>
+      <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+          <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+        </video>
+        <div class="container h-100">
+          <div class="d-flex h-100 text-center d-flex flex-column justify-content-center align-items-center">
+            <div class="w-100 text-white">
+              <h1 class="display-3">Welcome to Dev Match</h1>
+              <h3 class="lead mb-0">A membership site where entrepreneurs can meet developers.</h3>
+            </div>
+            <%= link_to "Explore Community", users_path, class: 'lead mb-0 banner-button' %>
+          </div>
         </div>
-      </div>
+      </header>
     <% end %>
     <div class="container">
       <%= yield %>
     </div>
-
   </body>
 </html>

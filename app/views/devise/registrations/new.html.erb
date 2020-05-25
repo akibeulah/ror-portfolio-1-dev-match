@@ -1,9 +1,13 @@
 <div class="row">
-  <% if params[:plan] == '2' %>
+  <% if params[:plan] == '3' %>
     <div class="col-md-6 col-md-offset-3 text-center">
       <h1>Dev-Match Professional</h1>
-      <p>Sign up for the Professional plan at $10/month and get full access to the community with their contact
-        information.</p>
+      <p>Sign up for the Professional plan at $10/month and get full access to the community.</p>
+    </div>
+  <% elsif params[:plan] == '2' %>
+    <div class="col-md-6 col-md-offset-3 text-center">
+      <h1>Dev-Match Standard</h1>
+      <p>Sign up for the Standard plan at $5/month and get access to the community with boosted ads.</p>
     </div>
   <% else %>
     <div class="col-md-6 col-md-offset-3">
@@ -15,7 +19,9 @@
   <div class="col-md-4 col-md-offset-4">
     <div class="well">
       <h2>Sign up</h2>
-      <% if params[:plan] == '2' %>
+      <% if params[:plan] == '3' %>
+        <%= render "pro_form" %>
+      <% elsif params[:plan] == '2' %>
         <%= render "pro_form" %>
       <% else %>
         <%= render "basic_form" %>
