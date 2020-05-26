@@ -1,29 +1,45 @@
 <% if !current_user %>
-  <div class="row">
-    <div class="col-md-4 h-50">
-      <div class="well h-100 text-center">
-        <h2>Basic Membership</h2>
-        <h4>Sign up for the free plan and get basic access to the community. See what it has to offer and be a part of the fam</h4>
-        <br/>
-        <%= link_to "Sign Up Free", new_user_registration_path(plan: @basic_plan.id), style: "font-size: 2rem;", class: 'btn btn-secondary btn-lg btn-block' %>
+  <div class='row d-flex flex-row justify-content-around align-items-end'>
+    <div class="card col-md-3 ">
+      <div class='card-body well d-flex flex-column '>
+        <h4>Basic Membership</h4>
+        <p>Lorem ipsum dolor sit amet consectetur?</p>
+        <ul class="list-group">
+          <li class="list-group-item">Free</li>
+          <li class="list-group-item">Post Jobs</li>
+          <li class="list-group-item">Hire</li>
+          <br>
+          <%= link_to 'Sign Up Basic', new_user_registration_path(plan: @free_plan.id), class: 'mt-auto btn btn-block btn-lg btn-secondary' %>
+        </ul>
       </div>
     </div>
-
-    <div class="col-md-4 h-50">
-      <div class="well h-100 text-center">
-        <h2>Standard Membership</h2>
-        <h4>Sign up for the Standard plan at $5/month and get boosted ads. Increases your likeliness of interaction
-          information.</h4>
-        <%= link_to "Sign Up Standard", new_user_registration_path(plan: @basic_plan.id), style: "font-size: 2rem;", class: 'btn btn-primary btn-lg btn-block' %>
+    <div class="card col-md-3 ">
+      <div class='card-body well d-flex flex-column '>
+        <h4>Standard Membership</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur!</p>
+        <ul class="list-group">
+          <li class="list-group-item">$5/month</li>
+          <li class="list-group-item">Post Jobs</li>
+          <li class="list-group-item">Hire</li>
+          <li class="list-group-item">Boosted Ads</li>
+          <br>
+          <%= link_to 'Sign Up Standard', new_user_registration_path(plan: @basic_plan.id), class: 'mt-auto btn btn-block btn-lg btn-primary' %>
+        </ul>
       </div>
     </div>
-
-    <div class="col-md-4 h-50">
-      <div class="well h-100 text-center">
-        <h2>Professional Membership</h2>
-        <h4>Sign up for the Professional plan at $10/month and get full access to the community with their contact
-          information.</h4>
-        <%= link_to "Sign Up Pro", new_user_registration_path(plan: @pro_plan.id), style: "font-size: 2rem;", class: 'btn btn-yellow btn-lg btn-block' %>
+    <div class="card bg-dark col-md-3 ">
+      <div class='card-body text-white well d-flex flex-column '>
+        <h4>Premium Membership</h4>
+        <p>Lorem ipsum dolor sit amet consectetur praesentium!</p>
+        <ul class="list-group text-dark">
+          <li class="list-group-item">$10/month</li>
+          <li class="list-group-item">Post Jobs</li>
+          <li class="list-group-item">Hire</li>
+          <li class="list-group-item">Super Boosted Ads</li>
+          <li class="list-group-item">Instant Support</li>
+          <br>
+          <%= link_to 'Sign Up Premium', new_user_registration_path(plan: @pro_plan.id), class: 'mt-auto btn btn-block btn-lg btn-yellow' %>
+        </ul>
       </div>
     </div>
   </div>

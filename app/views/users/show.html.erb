@@ -1,41 +1,35 @@
 <% @user %>
-
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
     <ul class="list-unstyled">
       <li>
-        <div class="well <%= cycle('white-bg', '') %> ">
-          <div class="show">
-            <div class="show-child">
-              <div class="profile-info-group">
-                <div class="profile-image">
-                  <%= image_tag @user.profile.avatar.url(:medium) %>
-                </div>
-              </div>
+        <div class="card" style="width: 15rem" <%= cycle('white-bg', '') %>>
+          <div class="card-header">
+            <span>
+              <span class="job-title-icon"><%= job_title_icon %></span>
+              <%= @user.profile.job_title %>
+            </span>
+          </div>
+          <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top" %>
+          <div class="card-body">
+            <div class="card-title">
+              <span><%= @user.profile.first_name %></span>
+              <span><%= @user.profile.middle_name %></span>
+              <span><%= @user.profile.last_name %></span>
             </div>
-
-            <div class="show-child">
-              <div class="profile_info_group">
-                <span class="profile-name-view"><%= @user.profile.first_name %></span>
-                <span class="profile-name-view"><%= @user.profile.middle_name %></span>
-                <span class="profile-name-view"><%= @user.profile.last_name %></span>
+            <div class="card-text">
+              <div>
               </div>
-              <div class="profile_info_group">
-                  <span class="profile-info-child">
-                  <span class="job-title-icon"><%= job_title_icon %></span>
-                    <%= @user.profile.job_title %>
-                  </span>
-              </div>
-              <% if current_user.plan_id == 2 %>
-                <div class="profile_info_group">
-                  <span class="profile-info-child"><%= @user.profile.phone_number %></span>
+              <% if current_user.plan_id == 3 %>
+                <div>
+                  <span><%= @user.profile.phone_number %></span>
                 </div>
-                <div class="profile_info_group">
-                  <span class="profile-info-child"><%= @user.profile.contact_email %></span>
+                <div>
+                  <span><%= @user.profile.contact_email %></span>
                 </div>
               <% end %>
-              <div class="profile_info_group">
-                <span class="profile-info-child"><%= @user.profile.description %></span>
+              <div>
+                <span><%= @user.profile.description %></span>
               </div>
             </div>
           </div>

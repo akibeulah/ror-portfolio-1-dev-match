@@ -1,53 +1,47 @@
 <h1 class="custom-title text-center">Dev Match Community</h1>
 <br />
-<h1 class="sutitle text-center">Welcome to Dev Match Community, users must create a profile in order to be visible.</h1>
+<h1 class="sutitle text-center">Welcome to Dev Match Community
+  <% if !Profile.find_by_user_id(current_user.id) %> users must create a profile in order to be visible. <% end %>
+</h1>
 <br />
 <br />
-
-<div class="col-md-10 col-md-offset-1">
+<div class="col-md-10 col-md-offset-1 card-deck">
   <% @users.each do |u| %>
     <% if u.profile %>
-      <div class="well">
-        <div class="show">
-          <div class="show-child">
-            <div class="profile-info-group">
-              <div class="profile-image">
-                <%= link_to u, class: "custom-link" do %>
-                  <%= image_tag u.profile.avatar.url(:medium) %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          <div class="show-child">
-            <div class="profile_info_group">
-              <%= link_to u, class: "custom-link" do %>
-                <span class="profile-name-view"><%= u.profile.first_name %></span>
-                <span class="profile-name-view"><%= u.profile.middle_name %></span>
-                <span class="profile-name-view"><%= u.profile.last_name %></span>
-              <% end %>
-            </div>
-            <div class="profile_info_group">
-              <span class="profile-info-child">
-                <%= u.profile.job_title %>
-                <% if u.plan_id == 2 %>
-                  <span class="label label-danger">PRO</span>
-                <% end %>
-              </span>
-            </div>
+      <div class="card"  style="min-width: 15rem;">
+        <div class="card-header">
+          <span>
+            <% if u.plan_id == 3 %>
+              <span class="label label-danger">PRO</span>
+            <% end %>
+            <%= u.profile.job_title %>
+          </span>
+        </div>
+        <%= link_to u, class: "custom-link" do %>
+          <%= image_tag u.profile.avatar.url(:medium), class: "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <%= link_to u, class: "card-title" do %>
+            <span><%= u.profile.first_name %></span>
+            <span><%= u.profile.middle_name %></span>
+            <span><%= u.profile.last_name %></span>
+          <% end %>
+          <div class="card-text">
             <% if current_user.plan_id == 2 %>
-              <div class="profile_info_group">
-                <span class="profile-info-child"><%= u.profile.phone_number %></span>
+              <div>
+                <span><%= u.profile.phone_number %></span>
               </div>
-              <div class="profile_info_group">
-                <span class="profile-info-child"><%= u.profile.contact_email %></span>
+              <div>
+                <span><%= u.profile.contact_email %></span>
               </div>
             <% end %>
-            <div class="profile_info_group">
-              <span class="profile-info-child"><%= u.profile.description %></span>
+            <div>
+              <span><%= u.profile.description %></span>
             </div>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
   <% end %>
+<% end %>
 </div>

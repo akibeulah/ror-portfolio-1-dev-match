@@ -1,2 +1,9 @@
-@import './bootstrap_custom.scss';
-
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome"; 
+ @import "~bootstrap/scss/bootstrap";
+  
+ //intlTellnput.scss
+ @import "intlTelInput";
+ @import "pages";
