@@ -1,40 +1,63 @@
 <% @user %>
 <div class="row">
   <div class="col-md-10 col-md-offset-1">
-    <ul class="list-unstyled">
-      <li>
-        <div class="card" style="width: 15rem" <%= cycle('white-bg', '') %>>
-          <div class="card-header">
-            <span>
-              <span class="job-title-icon"><%= job_title_icon %></span>
-              <%= @user.profile.job_title %>
-            </span>
+    <% if @user.profile %>
+      <div class="card" style="width: 18rem" <%= cycle('white-bg', '') %>>
+        <div class="card-header">
+          <span>
+            <span class="job-title-icon"><%= job_title_icon %></span>
+            <%= @user.profile.job_title %>
+          </span>
+        </div>
+        <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top" %>
+        <div class="card-body">
+          <div class="card-title">
+            <span><%= @user.profile.first_name %></span>
+            <span><%= @user.profile.middle_name %></span>
+            <span><%= @user.profile.last_name %></span>
           </div>
-          <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top" %>
-          <div class="card-body">
-            <div class="card-title">
-              <span><%= @user.profile.first_name %></span>
-              <span><%= @user.profile.middle_name %></span>
-              <span><%= @user.profile.last_name %></span>
+          <div class="card-text">
+            <div>
             </div>
-            <div class="card-text">
+            <% if current_user.plan_id == 3 %>
               <div>
+                <span><%= @user.profile.phone_number %></span>
               </div>
-              <% if current_user.plan_id == 3 %>
-                <div>
-                  <span><%= @user.profile.phone_number %></span>
-                </div>
-                <div>
-                  <span><%= @user.profile.contact_email %></span>
-                </div>
-              <% end %>
               <div>
-                <span><%= @user.profile.description %></span>
+                <span><%= @user.profile.contact_email %></span>
               </div>
+            <% end %>
+            <div>
+              <span><%= @user.profile.description %></span>
             </div>
           </div>
         </div>
-      </li>
-    </ul>
+        <div class="card-footer">
+          <div class="text-left">
+            <%= link_to user_followers_path(user_id: @user.id) do %>
+              <span><%= @user.followers_count %> followers </span>
+            <% end %>
+            <%= link_to user_following_path(user_id: @user.id) do %>
+              <span><%= @user.followings_count %> following</span>
+            <% end %>
+          </div>
+          <div class="text-left">
+            <% if !(current_user.is_following?(@user)) %>
+              <% @follow = Follow.new %>
+              <%= form_for (@follow) do |f| %>
+                <%= hidden_field_tag :user_id, @user.id %>
+                <%= f.submit "Follow", class: "btn btn-primary" %>
+              <% end %>
+            <% else %>
+              <% @follow = Follow.new %>
+              <%= form_for (@follow), method: :delete do |f| %>
+                <%= hidden_field_tag :user_id, @user.id %>
+                <%= f.submit "Unfollow", class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

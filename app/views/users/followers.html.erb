@@ -1,0 +1,25 @@
+<div class="col-md-10 offset-md-1">
+  <ul class="list-group list-group-flush">
+    <% @followers.each do |follower| %>
+      <li class="list-group-item">
+        <span><%= follower.profile.last_name.upcase %></span>, 
+        <span><%= follower.profile.first_name %></span>
+        <span><%= follower.profile.middle_name %></span>
+        <span class="text-right">
+          <% if !(current_user.is_following?(follower)) %>
+            <% @follow = Follow.new %>
+            <%= form_for (@follow), class: 'text-right' do |f| %>
+              <%= hidden_field_tag :user_id, follower.id %>
+              <%= f.submit "Follow", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <% @follow = Follow.new %>
+            <%= form_for (@follow), class: 'text-right', method: :delete do |f| %>
+              <%= hidden_field_tag :user_id, follower.id %>
+              <%= f.submit "Unfollow", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </span>
+      </li>
+    <% end %></ul>
+</div>
