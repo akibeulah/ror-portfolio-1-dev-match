@@ -1,13 +1,7 @@
-require("@rails/ujs").start()
-require("@rails/activestorage").start()
-require("channels")
 
 import './bootstrap_custom.js'
 import "bootstrap"
 import "../stylesheets/application.scss"
-//= require jquery
-//= require popper
-//= require bootstrap
 
 $(document).ready(function () {
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
