@@ -6,10 +6,15 @@ ruby '2.6.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Gems for bootstrap support
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.5.0'
 gem 'sassc-rails', '>= 2.1.0'
 # Gem for font-awesome support
 gem 'font-awesome-sass', '~> 5.9.0'
+# Gem for messaging
+gem 'emoji'
+gem 'redis', '~> 3.2'
+# Gem for pagination
+gem 'will_paginate', '~> 3.1.1'
 # Gem for image management
 gem "paperclip", "~> 6.0.0"
 # Gem for bootstrap form... FML.

@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_26_211606) do
+ActiveRecord::Schema.define(version: 2020_05_26_202636) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "following_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -62,6 +69,8 @@ ActiveRecord::Schema.define(version: 2019_09_26_211606) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "plan_id"
     t.string "stripe_customer_token"
+    t.integer "followers_count", default: 0, null: false
+    t.integer "followings_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

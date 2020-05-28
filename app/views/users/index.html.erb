@@ -1,50 +1,63 @@
 <h1 class="custom-title text-center">Dev Match Community</h1>
 <br />
-<h1 class="sutitle text-center">Welcome to Dev Match Community, users must create a profile in order to be visible.</h1>
+<% if !Profile.find_by_user_id(current_user.id) %>
+  <p class="text-center">Users must create a profile in order to be visible.</p>
+<% end %>
 <br />
 <br />
+<div class="d-flex justify-content-around flex-row flex-wrap" style="margin: 0 !important">
 
-<div class="col-md-10 col-md-offset-1">
   <% @users.each do |u| %>
     <% if u.profile %>
-      <div class="well">
-        <div class="show">
-          <div class="show-child">
-            <div class="profile-info-group">
-              <div class="profile-image">
-                <%= link_to u, class: "custom-link" do %>
-                  <%= image_tag u.profile.avatar.url(:medium) %>
-                <% end %>
+      <div class="card"  style="width: 18rem; margin: 0 0 12px;">
+        <div class="card-header">
+          <span>
+            <% if u.plan_id == 3 %>
+              <span class="label label-danger">PRO</span>
+            <% end %>
+            <%= u.profile.job_title.capitalize %>
+          </span>
+        </div>
+        <%= link_to u, class: "custom-link" do %>
+          <%= image_tag u.profile.avatar.url(:medium), class: "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <%= link_to u, class: "card-title" do %>
+            <span><%= u.profile.first_name %></span>
+            <span><%= u.profile.middle_name %></span>
+            <span><%= u.profile.last_name %></span>
+          <% end %>
+          <div class="card-text">
+            <% if current_user.plan_id == 3 %>
+              <div>
+                <span><%= u.profile.phone_number %></span>
               </div>
-            </div>
-          </div>
-          <div class="show-child">
-            <div class="profile_info_group">
-              <%= link_to u, class: "custom-link" do %>
-                <span class="profile-name-view"><%= u.profile.first_name %></span>
-                <span class="profile-name-view"><%= u.profile.middle_name %></span>
-                <span class="profile-name-view"><%= u.profile.last_name %></span>
-              <% end %>
-            </div>
-            <div class="profile_info_group">
-              <span class="profile-info-child">
-                <%= u.profile.job_title %>
-                <% if u.plan_id == 2 %>
-                  <span class="label label-danger">PRO</span>
-                <% end %>
-              </span>
-            </div>
-            <% if current_user.plan_id == 2 %>
-              <div class="profile_info_group">
-                <span class="profile-info-child"><%= u.profile.phone_number %></span>
-              </div>
-              <div class="profile_info_group">
-                <span class="profile-info-child"><%= u.profile.contact_email %></span>
+              <div>
+                <span><%= u.profile.contact_email %></span>
               </div>
             <% end %>
-            <div class="profile_info_group">
-              <span class="profile-info-child"><%= u.profile.description %></span>
-            </div>
+            <div><%= u.profile.description %></div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="text-left">
+            <span><%= u.followers_count %> followers </span>
+            <span><%= u.followings_count %> following</span>
+          </div>
+          <div class="text-left">
+            <% if !(current_user.is_following?(u)) %>
+              <% @follow = Follow.new %>
+              <%= form_for (@follow) do |f| %>
+                <%= hidden_field_tag :user_id, u.id %>
+                <%= f.submit "Follow", class: "btn btn-primary" %>
+              <% end %>
+            <% else %>
+              <% @follow = Follow.new %>
+              <%= form_for (@follow), method: :delete do |f| %>
+                <%= hidden_field_tag :user_id, u.id %>
+                <%= f.submit "Unfollow", class: "btn btn-primary" %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

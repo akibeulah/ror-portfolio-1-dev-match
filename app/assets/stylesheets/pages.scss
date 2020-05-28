@@ -1,6 +1,10 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+body{
+  position: relative;
+}
+
 .btn-yellow {
   background: rgb(255, 230, 0);
   color: #ffffff;
@@ -10,7 +14,8 @@
   box-shadow: none !important;
 }
 
-.btn-yellow:hover, .btn-yellow:focus {
+.btn-yellow:hover,
+.btn-yellow:focus {
   background: rgb(255, 175, 0);
   color: #ffffff;
 }
@@ -163,7 +168,7 @@
 }
 
 .profile_info_group {
-  padding: .5rem;
+  padding: 0.5rem;
   display: inline;
 }
 
@@ -196,4 +201,159 @@
 
 .plan-cards {
   min-height: 20rem;
+}
+
+header {
+  position: relative;
+  background-color: black;
+  height: calc(100vh - 56px);
+  min-height: 25rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+  position: relative;
+  z-index: 2;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+@media (pointer: coarse) and (hover: none) {
+  header {
+    background: url("https://source.unsplash.com/XT5OInaElMw/1600x900") black no-repeat center center scroll;
+  }
+  header video {
+    display: none;
+  }
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  text-transform: uppercase;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 3.2rem 0;
+  background: black;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: sans-serif;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.orange {
+  color: #333333;
+}
+
+.footer-child {
+  padding: 0.8rem 0;
+  color: #868686;
+}
+
+.copyright {
+  margin-top: 2rem;
+}
+
+.social-links {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.social-link {
+  font-size: 2rem;
+  -webkit-transition: -webkit-transform 0.2s ease;
+  transition: -webkit-transform 0.2s ease;
+  -o-transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+  margin-top: 12px;
+}
+
+.social-link i {
+  text-align: center;
+}
+
+.social-link-bottom {
+  -webkit-transform: translateY(100%);
+  -ms-transform: translateY(100%);
+  transform: translateY(100%);
+}
+
+.social-pack {
+  height: 3.4rem;
+  width: 3.4rem;
+  overflow: hidden;
+  /* border-radius: 6px; */
+  background: #272727;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /* justify-content: center; */
+  margin: 0 0.5rem;
+  -webkit-transition: background 0.2s ease;
+  -o-transition: background 0.2s ease;
+  transition: background 0.2s ease;
+}
+
+.social-pack:hover .social-link {
+  -webkit-transform: translateY(-140%);
+  -ms-transform: translateY(-140%);
+  transform: translateY(-140%);
+}
+
+.social-pack:hover {
+  background: #333333;
 }
