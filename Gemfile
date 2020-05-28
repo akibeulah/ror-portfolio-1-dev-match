@@ -9,7 +9,7 @@ gem 'rails', '~> 6.0.0'
 gem 'bootstrap', '~> 4.5.0'
 gem 'sassc-rails', '>= 2.1.0'
 # Gem for font-awesome support
-gem 'font-awesome-sass', '~> 5.9.0'
+gem 'font-awesome-rails'
 # Gem for messaging
 gem 'emoji'
 gem 'redis', '~> 3.2'
