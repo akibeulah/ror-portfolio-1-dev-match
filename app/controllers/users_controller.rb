@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @users = User.all
+        @pagy, @users = pagy(User.all, items: 18)
     end
 
     def show
@@ -10,10 +10,10 @@ class UsersController < ApplicationController
     end
 
     def followers
-        @followers = User.find_by(id: params[:user_id]).followers
+        @pagy, @followers = pagy(User.find_by(id: params[:user_id]).followers, items: 14)
     end
     
     def following 
-        @following = User.find_by(id: params[:user_id]).following
+        @pagy, @following = pagy(User.find_by(id: params[:user_id]).following, items: 14)
     end
 end

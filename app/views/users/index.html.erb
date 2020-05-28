@@ -5,8 +5,10 @@
 <% end %>
 <br />
 <br />
-<div class="d-flex justify-content-around flex-row flex-wrap" style="margin: 0 !important">
-
+<div class="d-flex flex-row justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
+<div class="d-flex justify-content-between flex-row flex-wrap" style="margin: 0 !important">
   <% @users.each do |u| %>
     <% if u.profile %>
       <div class="card"  style="width: 18rem; margin: 0 0 12px;">
@@ -63,4 +65,7 @@
       </div>
     <% end %>
   <% end %>
+</div>
+<div class="d-flex flex-row justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) %>
 </div>

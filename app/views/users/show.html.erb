@@ -5,8 +5,8 @@
       <div class="card" style="width: 18rem" <%= cycle('white-bg', '') %>>
         <div class="card-header">
           <span>
-            <span class="job-title-icon"><%= job_title_icon %></span>
-            <%= @user.profile.job_title %>
+            <%# <span class="job-title-icon"><%= job_title_icon %></span>
+            <%= @user.profile.job_title.capitalize %>
           </span>
         </div>
         <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top" %>

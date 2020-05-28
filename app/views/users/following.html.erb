@@ -1,7 +1,10 @@
-<div class="col-md-10 offset-md-1">
-  <ul class="list-group list-group-flush">
+<div class="col-md-10 offset-md-1" style="margin-top: 12px">
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <ul class="list-unstyled list-group-flush row">
     <% @following.each do |follower| %>
-      <li class="list-group-item">
+      <li class="list-group-item col-sm-5 offset-sm-1">
         <span><%= follower.profile.last_name.upcase %></span>, 
         <span><%= follower.profile.first_name %></span>
         <span><%= follower.profile.middle_name %></span>
@@ -21,5 +24,9 @@
           <% end %>
         </span>
       </li>
-    <% end %></ul>
+    <% end %>
+  </ul>
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
 </div>
