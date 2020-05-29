@@ -5,9 +5,11 @@
   <ul class="list-unstyled list-group-flush row">
     <% @following.each do |follower| %>
       <li class="list-group-item col-sm-5 offset-sm-1">
-        <span><%= follower.profile.last_name.upcase %></span>, 
-        <span><%= follower.profile.first_name %></span>
-        <span><%= follower.profile.middle_name %></span>
+        <%= link_to follower, class: "card-title" do %>
+          <span><%= follower.profile.last_name.upcase %></span>, 
+          <span><%= follower.profile.first_name %></span>
+          <span><%= follower.profile.middle_name %></span>
+        <% end %>
         <span class="text-right">
           <% if !(current_user.is_following?(follower)) %>
             <% @follow = Follow.new %>

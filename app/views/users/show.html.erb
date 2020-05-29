@@ -1,11 +1,11 @@
-<% @user %>
-<div class="row">
-  <div class="col-md-10 col-md-offset-1">
-    <% if @user.profile %>
-      <div class="card" style="width: 18rem" <%= cycle('white-bg', '') %>>
-        <div class="card-header">
-          <span>
-            <%# <span class="job-title-icon"><%= job_title_icon %></span>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <% if @user.profile %>
+        <div class="card" style="width: 18rem" <%= cycle('white-bg', '') %>>
+          <div class="card-header">
+            <span>
+              <%# <span class="job-title-icon"><%= job_title_icon %></span>
             <%= @user.profile.job_title.capitalize %>
           </span>
         </div>
@@ -57,7 +57,51 @@
             <% end %>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+  <div class="col-md-8 offset-sm-1">
+    <div class="d-flex flex-row flex-wrap justify-content-around">
+      <% @posts.each do |p| %>
+        <div class="card" style="margin-bottom: 12px; width: 20rem">
+          <div class="card-header d-flex flex-row justify-content-between">
+            <h5><%= p.title %></h5>
+            <%= link_to 'Edit', edit_user_post_path(user_id: p.user_id, id: p.id), class: '', style: "margin-right: 4px",method: :put %>
+          </div>
+          <%= image_tag p.image_url, class: "card-img-top" %>
+          <div class="card-body">
+            <h6><%= p.subtitle %></h6>
+          </div>
+          <div class="card-footer d-flex flex-row align-items-center justify-content-between">
+            <span>
+              <span>
+                <i class="far fa-heart"></i>
+                <%= p.likes_count %>
+              </span>
+              <span>
+                <i class="fas fa-heart-broken"></i>
+                <%= p.dislikes_count %>
+              </span>
+              <span>
+                <i class="fas fa-retweet"></i>
+                <%= p.shares_count %>
+              </span>
+            </span>
+            <span class="d-flex flex-row text-right">
+              <% if current_user.id == p.user_id %>
+                <%= button_to 'Delete', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-danger', style: "margin-right: 4px",method: :delete %>
+              <% end%>
+              <span>
+                <%= link_to 'View', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-primary' %>
+              </span>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="d-flex flex-row justify-content-center">
+      <%== pagy_bootstrap_nav(@pagy) %>
+    </div>
+  </div>
+</div>
 </div>

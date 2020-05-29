@@ -49,16 +49,14 @@
             <li class="nav-item"><%= link_to "Contact", new_contact_path, class: 'nav-link' %></li>
           </ul>
         </div>
-        
       </div>
-
       <div class="flash-messages">
         <% flash.each do |key, value| %>
           <%= content_tag :div, value, class: "alert alert-#{key}" %>
         <% end %>
       </div>
     </nav>
-    <% if current_page?(root_path) && !current_user %>
+    <% if current_page?(root_path) && !user_signed_in? %>
       <header>
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
@@ -75,32 +73,38 @@
         </div>
       </header>
     <% end %>
-    <div class="container" style="min-height: calc(100vh - 59px)">
+    <div id="modal-holder"></div>
+    <div class="">
       <%= yield %>
     </div>
+    <% if current_user %>
+      <%#= link_to 'add', new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' %>
+       <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    <% end %>
     <div class="footer">
-                <div class="footer-child social-links">
-                    <a class="social-pack" href="https://www.instagram.com/for.luhh/">
-                        <i class="fab fa-instagram social-link"></i>
-                        <i class="fab fa-instagram social-link social-link-bottom"></i>
-                    </a>
-                    <a class="social-pack" href="https://twitter.com/for_luhh">
-                        <i class="fab fa-twitter social-link"></i>
-                        <i class="fab fa-twitter social-link social-link-bottom"></i>
-                    </a>
-                    <a class="social-pack" href="https://ng.linkedin.com/in/beulah-akindele-8093b9193">
-                        <i class="fab fa-linkedin social-link"></i>
-                        <i class="fab fa-linkedin social-link social-link-bottom"></i>
-                    </a>
-                    <a class="social-pack"
+      <div class="footer-child social-links">
+        <a class="social-pack" href="https://www.instagram.com/for.luhh/">
+          <i class="fab fa-instagram social-link"></i>
+          <i class="fab fa-instagram social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack" href="https://twitter.com/for_luhh">
+          <i class="fab fa-twitter social-link"></i>
+          <i class="fab fa-twitter social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack" href="https://ng.linkedin.com/in/beulah-akindele-8093b9193">
+          <i class="fab fa-linkedin social-link"></i>
+          <i class="fab fa-linkedin social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack"
                         href="https://wa.me/+234901427926?text=I%20just%20saw%20your%20site%20and%20I%20am%20interested.">
-                        <i class="fab fa-whatsapp social-link"></i>
-                        <i class="fab fa-whatsapp social-link social-link-bottom"></i>
-                    </a>
-                </div>
-
-                <div class="copyright footer-child">Beulah Oluwafemi Akindele <span class="orange">&copy;2020</span>
-                </div>
-            </div>
+          <i class="fab fa-whatsapp social-link"></i>
+          <i class="fab fa-whatsapp social-link social-link-bottom"></i>
+        </a>
+      </div>
+      <div class="copyright footer-child">Beulah Oluwafemi Akindele <span class="orange">&copy;2020</span>
+      </div>
+    </div>
   </body>
 </html>

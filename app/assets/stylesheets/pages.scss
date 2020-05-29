@@ -1,8 +1,30 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-body{
+body {
   position: relative;
+}
+
+.post-image {
+  max-height: 350px;
+  width: 100%;
+  object-fit: none;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 2rem;
+  border-radius: 50%;
+  z-index: 5;
+  padding: 1rem 1.5rem;
+  margin: 1rem;
+}
+
+.xx {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .btn-yellow {
@@ -86,7 +108,8 @@ body{
 }
 
 #banner {
-  background: linear-gradient(rgba(141, 141, 100, 0.6) 20%, rgba(114, 141, 129, 0.6)) 100%, url("image1.jpg") center/cover no-repeat fixed;
+  background: linear-gradient(rgba(141, 141, 100, 0.6) 20%, rgba(114, 141, 129, 0.6)) 100%,
+    url("image1.jpg") center/cover no-repeat fixed;
   position: relative;
   min-height: 100vh;
   overflow: hidden;

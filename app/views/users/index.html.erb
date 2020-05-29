@@ -1,71 +1,71 @@
-<h1 class="custom-title text-center">Dev Match Community</h1>
-<br />
-<% if !Profile.find_by_user_id(current_user.id) %>
-  <p class="text-center">Users must create a profile in order to be visible.</p>
-<% end %>
-<br />
-<br />
-<div class="d-flex flex-row justify-content-center">
-  <%== pagy_bootstrap_nav(@pagy) %>
-</div>
-<div class="d-flex justify-content-between flex-row flex-wrap" style="margin: 0 !important">
-  <% @users.each do |u| %>
-    <% if u.profile %>
-      <div class="card"  style="width: 18rem; margin: 0 0 12px;">
-        <div class="card-header">
-          <span>
-            <% if u.plan_id == 3 %>
-              <span class="label label-danger">PRO</span>
-            <% end %>
-            <%= u.profile.job_title.capitalize %>
-          </span>
-        </div>
-        <%= link_to u, class: "custom-link" do %>
-          <%= image_tag u.profile.avatar.url(:medium), class: "card-img-top" %>
-        <% end %>
-        <div class="card-body">
-          <%= link_to u, class: "card-title" do %>
-            <span><%= u.profile.first_name %></span>
-            <span><%= u.profile.middle_name %></span>
-            <span><%= u.profile.last_name %></span>
-          <% end %>
-          <div class="card-text">
-            <% if current_user.plan_id == 3 %>
-              <div>
-                <span><%= u.profile.phone_number %></span>
-              </div>
-              <div>
-                <span><%= u.profile.contact_email %></span>
-              </div>
-            <% end %>
-            <div><%= u.profile.description %></div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <div class="text-left">
-            <span><%= u.followers_count %> followers </span>
-            <span><%= u.followings_count %> following</span>
-          </div>
-          <div class="text-left">
-            <% if !(current_user.is_following?(u)) %>
-              <% @follow = Follow.new %>
-              <%= form_for (@follow) do |f| %>
-                <%= hidden_field_tag :user_id, u.id %>
-                <%= f.submit "Follow", class: "btn btn-primary" %>
-              <% end %>
-            <% else %>
-              <% @follow = Follow.new %>
-              <%= form_for (@follow), method: :delete do |f| %>
-                <%= hidden_field_tag :user_id, u.id %>
-                <%= f.submit "Unfollow", class: "btn btn-primary" %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="container">
+  <h1 class="custom-title text-center">Dev Match Community</h1>
+  <br />
+  <% if !Profile.find_by_user_id(current_user.id) %>
+    <p class="text-center">Users must create a profile in order to be visible.</p>
   <% end %>
-</div>
-<div class="d-flex flex-row justify-content-center">
-  <%== pagy_bootstrap_nav(@pagy) %>
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="card-columns xx">
+    <% @users.each do |u| %>
+      <% if u.profile %>
+        <div class="card"  style="width: 18rem; margin: 0 0 12px;">
+          <div class="card-header">
+            <span>
+              <% if u.plan_id == 3 %>
+                <span class="label label-danger">PRO</span>
+              <% end %>
+              <%= u.profile.job_title.capitalize %>
+            </span>
+          </div>
+          <%= link_to u, class: "custom-link" do %>
+            <%= image_tag u.profile.avatar.url(:medium), class: "card-img-top" %>
+          <% end %>
+          <div class="card-body">
+            <%= link_to u, class: "card-title" do %>
+              <span><%= u.profile.first_name %></span>
+              <span><%= u.profile.middle_name %></span>
+              <span><%= u.profile.last_name %></span>
+            <% end %>
+            <div class="card-text">
+              <% if current_user.plan_id == 3 %>
+                <div>
+                  <span><%= u.profile.phone_number %></span>
+                </div>
+                <div>
+                  <span><%= u.profile.contact_email %></span>
+                </div>
+              <% end %>
+              <div><%= u.profile.description %></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="text-left">
+              <span><%= u.followers_count %> followers </span>
+              <span><%= u.followings_count %> following</span>
+            </div>
+            <div class="text-left">
+              <% if !(current_user.is_following?(u)) %>
+                <% @follow = Follow.new %>
+                <%= form_for (@follow) do |f| %>
+                  <%= hidden_field_tag :user_id, u.id %>
+                  <%= f.submit "Follow", class: "btn btn-primary" %>
+                <% end %>
+              <% else %>
+                <% @follow = Follow.new %>
+                <%= form_for (@follow), method: :delete do |f| %>
+                  <%= hidden_field_tag :user_id, u.id %>
+                  <%= f.submit "Unfollow", class: "btn btn-primary" %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
 </div>

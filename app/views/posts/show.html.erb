@@ -1,0 +1,52 @@
+<div class="jumbotron text-white">
+  <div class="container wrapper">
+    <div class="display-4">
+      <%= @post.title %>
+    </div>
+    <div class="display-5">
+      <%= @post.subtitle %>
+    </div>
+    <div class="text-right" style="font-size: 1.2rem">
+      <span>
+        <i class="far fa-heart"></i>
+        <%= @post.likes_count %>
+      </span>
+      <span>
+        <i class="fas fa-heart-broken"></i>
+        <%= @post.dislikes_count %>
+      </span>
+      <span>
+        <i class="fas fa-retweet"></i>
+        <%= @post.shares_count %>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="container text-justify">
+  <div class="text-right" style="font-size: 1.2rem">
+    <span>
+      <i class="far fa-heart"></i>
+      Like
+    </span>
+    <span>
+      <i class="fas fa-heart-broken"></i>
+      Dislike
+    </span>
+    <span>
+      <i class="fas fa-retweet"></i>
+      Share
+    </span>
+  </div>
+<%= @post.body %>
+</div>
+</div>
+
+<style>
+  .jumbotron {
+    background: url("<%= @post.image_url %>") no-repeat center/cover fixed;
+  }
+  .wrapper {
+    background: #41414179;
+    padding: 12px;
+  }
+</style>

@@ -8,6 +8,9 @@ gem 'rails', '~> 6.0.0'
 # Gems for bootstrap support
 gem 'bootstrap', '~> 4.5.0'
 gem 'sassc-rails', '>= 2.1.0'
+gem 'jquery-rails'
+# Modal Support
+gem 'responders'
 # Gem for font-awesome support
 gem 'font-awesome-sass', '~> 5.13.0'
 # Gem for messaging
@@ -48,6 +51,10 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+  group :development do
+    gem 'guard', '~> 2.14', '>= 2.14.1'
+    gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+  end
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

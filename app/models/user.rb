@@ -7,7 +7,9 @@ class User < ApplicationRecord
   belongs_to :plan
 
   has_one :profile
-
+  
+  has_many :posts
+  
   has_many :follower_relationships, class_name: "Follow", foreign_key: "following_id"
   has_many :followers, through: :follower_relationships, source: :follower
 
