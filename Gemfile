@@ -11,6 +11,8 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
 # Modal Support
 gem 'responders'
+# Gem for quick comments
+gem 'commontator'
 # Gem for font-awesome support
 gem 'font-awesome-sass', '~> 5.13.0'
 # Gem for messaging

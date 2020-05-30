@@ -1,21 +1,22 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  
+         
   belongs_to :plan
-
   has_one :profile
-  
-  has_many :posts
-  
+  has_many :likes, dependent: :destroy
+  has_many :shares, dependent: :destroy
+  has_many :dislikes, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :follower_relationships, class_name: "Follow", foreign_key: "following_id"
   has_many :followers, through: :follower_relationships, source: :follower
-
   has_many :following_relationships, class_name: "Follow", foreign_key: "user_id"
   has_many :following, through: :following_relationships, source: :following
-  
+
+  acts_as_commontator
   attr_accessor :stripe_card_token
 
   def follow(user_id)
@@ -39,6 +40,21 @@ class User < ApplicationRecord
   def is_following?(user_id)
     relationship = Follow.find_by(user_id: id, following_id: user_id)
     return true if relationship 
+  end
+
+  def likes?(post_id)
+    well = Like.find_by(user_id: id, post_id: post_id)
+    return true if well
+  end
+  
+  def dislikes?(post_id)
+    well = Dislike.find_by(user_id: id, post_id: post_id)
+    return true if well
+  end
+
+  def has_shared?(post_id)
+    well = Share.find_by(user_id: id, post_id: post_id)
+    return true if well
   end
 
   def save_with_payment

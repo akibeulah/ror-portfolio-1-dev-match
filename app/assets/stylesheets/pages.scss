@@ -5,6 +5,85 @@ body {
   position: relative;
 }
 
+.w-60 {
+  width: 60%;
+  min-width: 650px;
+}
+
+.text-set {
+  font-size: 1.2rem;
+  color: #292929;
+}
+
+.wrapper {
+  background: #41414179;
+  padding: 12px;
+}
+.btn-small {
+  height: 30px;
+}
+
+.post-btn{
+  color: rgb(107, 107, 107);
+  transition: color .4s ease;
+}
+
+.quick-btn {
+  color: rgb(107, 107, 107);
+  transition: color .4s ease;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+}
+
+.post-btn:hover {
+  text-decoration: none;
+}
+
+.post-like:hover, .up-solid {
+  color: #ff0019;
+}
+
+.post-dislike:hover, .down-solid {
+  color: #000000;
+}
+
+.post-share:hover, .share-solid {
+  color: #0080ff;
+}
+
+.post-comment:hover {
+  color: #ffd900;
+}
+
+.text-set:hover {
+  color: #292929;
+}
+
+.btn-set {
+  display: inline-block;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  margin-top: -14px;
+  margin-left: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  font-size: .8rem;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.img-thumbnail {
+  width: 80px;
+  border-radius: 50%;
+}
+
 .post-image {
   max-height: 350px;
   width: 100%;

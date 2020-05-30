@@ -74,30 +74,31 @@
             <div class="card-footer d-flex flex-row align-items-center justify-content-between">
               <span>
                 <span>
-                  <i class="far fa-heart"></i>
-                  <%= p.likes_count %>
+                  <i class="fas fa-heart up-solid"></i>
+                  <%= p.likes.count %>
                 </span>
                 <span>
-                  <i class="fas fa-heart-broken"></i>
-                  <%= p.dislikes_count %>
+                  <i class="fas fa-heart-broken down-solid"></i>
+                  <%= p.dislikes.count %>
                 </span>
                 <span>
-                  <i class="fas fa-retweet"></i>
-                  <%= p.shares_count %>
+                  <i class="fas fa-retweet share-solid"></i>
+                  <%= p.shares.count %>
                 </span>
               </span>
-              <span class="text-right">
-                <%= link_to 'View', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-primary' %>
-              </span>
-            </div>
+            </span>
+            <span class="text-right">
+              <%= link_to 'View', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-primary' %>
+            </span>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
-      <div class="d-flex flex-row justify-content-center">
-        <%== pagy_bootstrap_nav(@pagy) %>
-      </div>
-    <div class="tab-pane fade" id="job" role="tabpanel" aria-labelledby="job-tab">...</div>
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
   </div>
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="tab-pane fade" id="job" role="tabpanel" aria-labelledby="job-tab">...</div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+</div>
 </div>

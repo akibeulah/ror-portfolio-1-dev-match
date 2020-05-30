@@ -7,7 +7,14 @@ Rails.application.routes.draw do
     get 'following' => 'users#following'
   end
   
+  mount Commontator::Engine => '/commontator'
   resource :follows, only: %i[create destroy]
+
+  resources :posts do
+    resources :likes
+    resources :shares
+    resources :dislikes
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :contacts

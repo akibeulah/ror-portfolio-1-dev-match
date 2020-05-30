@@ -1,3 +1,7 @@
+//= require commontator/application
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
 
 import './bootstrap_custom.js'
 import "bootstrap"
@@ -48,13 +52,6 @@ $(document).ready(function () {
         e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
     });
 });
-
-$(document).ready(function () {
-    console.log(1000);
-    var input = document.querySelector("#profile_phone_number");
-    window.intlTelInput(input);
-});
-
 
 $(function() {
     const modal_holder_selector = '#modal-holder';

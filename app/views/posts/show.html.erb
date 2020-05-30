@@ -8,45 +8,95 @@
     </div>
     <div class="text-right" style="font-size: 1.2rem">
       <span>
-        <i class="far fa-heart"></i>
-        <%= @post.likes_count %>
+        <i class="fas fa-heart"></i>
+        <%= @post.likes.count %>
       </span>
       <span>
         <i class="fas fa-heart-broken"></i>
-        <%= @post.dislikes_count %>
+        <%= @post.dislikes.count %>
       </span>
       <span>
         <i class="fas fa-retweet"></i>
-        <%= @post.shares_count %>
+        <%= @post.shares.count %>
       </span>
     </div>
   </div>
 </div>
-<div class="container text-justify">
-  <div class="text-right" style="font-size: 1.2rem">
-    <span>
-      <i class="far fa-heart"></i>
-      Like
-    </span>
-    <span>
-      <i class="fas fa-heart-broken"></i>
-      Dislike
-    </span>
-    <span>
-      <i class="fas fa-retweet"></i>
-      Share
-    </span>
+<div class="container w-60 text-justify">
+  <div class="d-flex flex-row justify-content-between flex-wrap">
+    <div class="d-flex flex-row align-items-center">
+      <%= link_to @user, class: "text-set card-title" do %>
+        <%= image_tag @user.profile.avatar.url(:small), class: "img-thumbnail" %>
+      <% end %>
+      <div class="d-flex flex-column" style="margin-left: 8px">
+        <div class="d-flex flex-row align-items-center" style="margin-bottom: -15px">
+          <%= link_to @user, class: "text-set card-title" do %>
+            <span><%= @user.profile.first_name %></span>
+            <span><%= @user.profile.middle_name %></span>
+            <span><%= @user.profile.last_name %></span>
+          <% end %>
+          <% if !(current_user.is_following?(@user)) %>
+            <%= button_to 'Follow', follows_path(user_id: @user.id), class: 'btn-set btn-primary' %>
+          <% else %>
+            <%= button_to 'Unfollow', follows_path(user_id: @user.id), class: 'btn-set btn-danger', method: :delete %>
+          <% end %>
+        </div>
+        <span style="color: #4b4b4b;"><%= @post.created_at.strftime("%b %-d, %Y") %></span>
+      </div>
+    </div>
+    <div class="align-self-end d-flex flex-row align-items-center" style="font-size: 1.2rem">
+      <span>
+        <% if !(current_user.likes?(@post.id)) %>
+          <%= button_to post_likes_path(@post), class: "quick-btn post-like", method: :post do %>
+            <i class="fas fa-arrow-circle-up"></i>
+          <% end %>
+        <% else %>
+          <% @like = Like.find_by(post_id: @post.id, user_id: current_user.id) %>
+          <%= button_to post_like_path(id: @like.id, post_id: @post.id), class: "quick-btn post-like", method: :delete do %>
+            <i class="fas fa-arrow-circle-up up-solid"></i>
+          <% end %>
+        <% end %>
+      </span>
+      <span>
+        <% if (current_user.dislikes?(@post.id)) %>
+          <% @dislike = Dislike.find_by(post_id: @post.id, user_id: current_user.id) %>
+          <%= button_to post_dislike_path(id: @dislike.id, post_id: @post.id), class: "quick-btn post-dislike", method: :delete do %>
+            <i class="fas fa-arrow-circle-down down-solid"></i>
+          <% end %>
+        <% else %>
+          <%= button_to post_dislikes_path(@post), class: "quick-btn post-dislike", method: :post do %>
+            <i class="fas fa-arrow-circle-down"></i>
+          <% end %>
+        <% end %>
+      </span>
+      <span>
+        <% if (current_user.has_shared?(@post.id)) %>
+          <% @share = Share.find_by(post_id: @post.id, user_id: current_user.id) %>
+          <%= button_to post_share_path(id: @share.id, post_id: @post.id), class: "quick-btn post-share", method: :delete do %>
+            <i class="fas fa-redo share-solid"></i>
+          <% end %>
+        <% else %>
+          <%= button_to post_shares_path(@post), class: "quick-btn post-share", method: :post do %>
+            <i class="fas fa-redo"></i>
+          <% end %>
+        <% end %>
+      </span>
+    </div>
   </div>
-<%= @post.body %>
+  <br>
+  <br>
+  <%= @post.body %>
+  <br>
+  <br>
+  <script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+  <%= commontator_thread(@post) %>
 </div>
 </div>
-
 <style>
   .jumbotron {
     background: url("<%= @post.image_url %>") no-repeat center/cover fixed;
-  }
-  .wrapper {
-    background: #41414179;
-    padding: 12px;
   }
 </style>
