@@ -1,4 +1,4 @@
-class ContactMailer < ActionMailer::Base
+class ContactMailer < ApplicationMailer
   default to: 'ultratechnologies.dev@gmail.com'
 
   def contact_email(name, email, comment)
