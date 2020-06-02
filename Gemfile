@@ -20,6 +20,8 @@ gem 'emoji'
 gem 'redis', '~> 3.2'
 # Gem for pagination
 gem 'pagy', '~> 3.5'
+# Gem for searches
+gem 'simple_form'
 # Gem for image management
 gem "paperclip", "~> 6.0.0"
 # Gem for bootstrap form... FML.

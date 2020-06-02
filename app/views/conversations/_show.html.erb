@@ -1,0 +1,13 @@
+    
+<div id="conversation-main" class="d-flex flex-column justify-content-between" style="min-height: 100%">
+  <div id="conversation-body" class="no-scroll d-flex flex-column" style="max-height: 60vh; overflow-y: scroll;">
+    <%= render @conversation.personal_messages %>
+  </div>
+  <%= form_for @personal_message do |f| %>
+    <%= hidden_field_tag 'conversation_id', @conversation.id %>
+    <div class="d-flex flex-row justify-content-between align-items-end">
+      <%= f.text_area :body, class: 'form-control no-scroll', style: 'max-width: 90%; resize: none;  height: auto;' %>
+      <%= f.button "<i class='fas fa-paper-plane'></i>".html_safe, class: 'btn btn-dark' %>
+    </div>
+  <% end %>
+</div>

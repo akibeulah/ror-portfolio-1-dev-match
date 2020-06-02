@@ -5,6 +5,67 @@ body {
   position: relative;
 }
 
+.btn-link:hover {
+  color: #212529;
+}
+
+.alert {
+  position: absolute;
+}
+
+.user-message {
+  padding: 1rem;
+  border: 1px solid #494949;
+  width: fit-content;
+  align-self: flex-end !important;
+  border-radius: 25px 25px 0 25px;
+}
+
+.sender-message {
+  padding: 1rem;
+  border: 1px solid #494949;
+  width: fit-content;
+  border-radius: 25px 25px 25px 0;
+  align-self: flex-start !important;
+}
+
+.trend {
+  border-bottom: 1px solid #494949;
+  margin-bottom: 8px;
+  height: 80px;
+}
+
+.no-scroll {
+  overflow-y: scroll;
+}
+
+.no-scroll::-webkit-scrollbar
+{
+	width: 0px;
+}
+
+.no-hover:hover {
+  text-decoration: none !important;
+}
+
+.card-sp {
+  height: 120px;
+  margin-bottom: 12px;
+}
+
+.post-card-image {
+  width: 200px;
+  object-fit: cover;
+}
+
+.post-card-footer {
+  background: transparent;
+}
+
+.card-no-border {
+  border: none;
+}
+
 .w-60 {
   width: 60%;
   min-width: 650px;

@@ -1,0 +1,19 @@
+<div>
+  <%= link_to root_path(c: conversation) do %>
+    <div class="d-flex flex-row">
+      <div class="text-set card-title">
+        <%= image_tag conversation.with(current_user).profile.avatar.url(:small), class: "img-thumbnail", style: 'width: 50px' %>
+      </div>
+      <div class="btn btn-link" style="padding: 0 0.5rem">
+        <span style="color: #000">
+          <%= conversation.with(current_user).profile.first_name.capitalize %>
+        </span>
+        <br>
+        <div style="color: #494949" class="d-flex w-100 flex-row justify-content-between">
+          <%= conversation.personal_messages.last.body.truncate(50) %>
+        </div>
+      </div>
+    </div>
+    <hr>
+  <% end %>
+</div>

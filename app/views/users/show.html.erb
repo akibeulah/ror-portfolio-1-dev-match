@@ -15,6 +15,9 @@
             <span><%= @user.profile.first_name %></span>
             <span><%= @user.profile.middle_name %></span>
             <span><%= @user.profile.last_name %></span>
+            <div>
+              <%= @user.profile.first_name %> | <%= link_to 'send a message', new_personal_message_path(receiver_id: @user) %>
+            </div>
           </div>
           <div class="card-text">
             <div>

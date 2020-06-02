@@ -23,6 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "Contact", new_contact_path, class: 'nav-link' %></li>
             <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "Community", users_path, class: 'nav-link' %>
@@ -30,8 +31,6 @@
               <li class="nav-item">
                 <%= link_to "Account", edit_user_registration_path, class: 'nav-link' %>
               </li>
-            <% end %>
-            <% if user_signed_in? %>
               <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
               <% if Profile.exists?(user_id: current_user.id) %>
                 <% @profile = current_user.profile %>
@@ -45,8 +44,8 @@
               <% end %>
             <% else %>
               <li class="nav-item"><%= link_to "Login", new_user_session_path, class: 'nav-link' %></li>
+              <li class="nav-item"><%= link_to "Get Started", plans_path, class: 'nav-link btn btn-success' %></li>
             <% end %>
-            <li class="nav-item"><%= link_to "Contact", new_contact_path, class: 'nav-link' %></li>
           </ul>
         </div>
       </div>
@@ -68,43 +67,45 @@
               <h1 class="display-3">Welcome to Dev Match</h1>
               <h3 class="lead mb-0">A membership site where entrepreneurs can meet developers.</h3>
             </div>
-            <%= link_to "Explore Community", users_path, class: 'lead mb-0 banner-button' %>
+            <%= link_to "Get Started", users_path, class: 'lead mb-0 banner-button' %>
           </div>
         </div>
       </header>
     <% end %>
     <div id="modal-holder"></div>
-    <div class="">
+    <div>
       <%= yield %>
     </div>
     <% if current_user %>
       <%#= link_to 'add', new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' %>
-       <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
+      <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
         <i class="fas fa-plus"></i>
       <% end %>
     <% end %>
-    <div class="footer">
-      <div class="footer-child social-links">
-        <a class="social-pack" href="https://www.instagram.com/for.luhh/">
-          <i class="fab fa-instagram social-link"></i>
-          <i class="fab fa-instagram social-link social-link-bottom"></i>
-        </a>
-        <a class="social-pack" href="https://twitter.com/for_luhh">
-          <i class="fab fa-twitter social-link"></i>
-          <i class="fab fa-twitter social-link social-link-bottom"></i>
-        </a>
-        <a class="social-pack" href="https://ng.linkedin.com/in/beulah-akindele-8093b9193">
-          <i class="fab fa-linkedin social-link"></i>
-          <i class="fab fa-linkedin social-link social-link-bottom"></i>
-        </a>
-        <a class="social-pack"
+    <% if !(user_signed_in? && current_page?(root_path)) %>
+      <div class="footer">
+        <div class="footer-child social-links">
+          <a class="social-pack" href="https://www.instagram.com/for.luhh/">
+            <i class="fab fa-instagram social-link"></i>
+            <i class="fab fa-instagram social-link social-link-bottom"></i>
+          </a>
+          <a class="social-pack" href="https://twitter.com/for_luhh">
+            <i class="fab fa-twitter social-link"></i>
+            <i class="fab fa-twitter social-link social-link-bottom"></i>
+          </a>
+          <a class="social-pack" href="https://ng.linkedin.com/in/beulah-akindele-8093b9193">
+            <i class="fab fa-linkedin social-link"></i>
+            <i class="fab fa-linkedin social-link social-link-bottom"></i>
+          </a>
+          <a class="social-pack"
                         href="https://wa.me/+234901427926?text=I%20just%20saw%20your%20site%20and%20I%20am%20interested.">
-          <i class="fab fa-whatsapp social-link"></i>
-          <i class="fab fa-whatsapp social-link social-link-bottom"></i>
-        </a>
+            <i class="fab fa-whatsapp social-link"></i>
+            <i class="fab fa-whatsapp social-link social-link-bottom"></i>
+          </a>
+        </div>
+        <div class="copyright footer-child">Beulah Oluwafemi Akindele <span class="orange">&copy;2020</span>
+        </div>
       </div>
-      <div class="copyright footer-child">Beulah Oluwafemi Akindele <span class="orange">&copy;2020</span>
-      </div>
-    </div>
+    <% end %>
   </body>
 </html>
