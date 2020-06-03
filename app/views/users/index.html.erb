@@ -24,9 +24,9 @@
           <% end %>
           <div class="card-body">
             <%= link_to u, class: "card-title" do %>
-              <span><%= u.profile.first_name %></span>
-              <span><%= u.profile.middle_name %></span>
-              <span><%= u.profile.last_name %></span>
+              <span><%= u.profile.last_name.upcase %>, </span>
+              <span><%= u.profile.first_name.capitalize %></span>
+              <span><%= u.profile.middle_name.capitalize %></span>
             <% end %>
             <div class="card-text">
               <% if current_user.plan_id == 3 %>

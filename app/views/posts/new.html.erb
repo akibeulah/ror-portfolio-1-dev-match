@@ -1,9 +1,5 @@
-<div class="row xx">
-  <div style="height: 100%">
+
     <div class="card" style="height: 100%">
-      <div class="card-header text-center">
-        New Post
-      </div>
       <%= form_for @post, url: user_post_path, :html => {:multipart => true} do |f| %>
         <div class="card-body">
           <%= hidden_field_tag :user_id, current_user.id %>
@@ -36,5 +32,3 @@
         </div>
       <% end %>
     </div>
-  </div>
-</div>

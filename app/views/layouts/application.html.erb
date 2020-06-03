@@ -12,7 +12,7 @@
   </head>
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark d-flex flex-column">
-      <div class="container">
+      <div class="container d-flex flex-row justify-content-between align-items-center">
         <%= link_to root_path, class: 'navbar-brand' do %>
           <i class="fab fa-dev"></i>
           Dev Match
@@ -20,29 +20,49 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to "Contact", new_contact_path, class: 'nav-link' %></li>
+        <div class="collapse navbar-collapse" style='flex-grow: 0' id="navbarSupportedContent">
+          <ul class="navbar-nav  d-flex flex-row align-items-center">
             <% if user_signed_in? %>
               <li class="nav-item">
                 <%= link_to "Community", users_path, class: 'nav-link' %>
               </li>
               <li class="nav-item">
-                <%= link_to "Account", edit_user_registration_path, class: 'nav-link' %>
+                <%= link_to "#", class: 'btn btn-outline-success' do %>
+                  Upgrade
+                <% end%>
               </li>
-              <li class="nav-item"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
-              <% if Profile.exists?(user_id: current_user.id) %>
-                <% @profile = current_user.profile %>
-                <% if current_page?(user_path(current_user)) %>
-                  <li class="nav-item"><%= link_to "Edit Profile", edit_user_profile_path(user_id: @profile.user_id), class: 'nav-link' %></li>
-                <% else %>
-                  <li class="nav-item"><%= link_to "Profile", user_path(id: @profile.user_id), class: 'nav-link' %></li>
-                <% end %>
-              <% else %>
-                <li class="nav-item"><%= link_to "Create Profile", new_user_profile_path(current_user), class: 'nav-link' %></li>
-              <% end %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= image_tag current_user.profile.avatar.url(:small), style: 'width: 40px; border-radius: 50%' %>
+                </a>
+                <div class="flex-column card-body dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div class="dropdown-item">
+                    <%= image_tag current_user.profile.avatar.url(:small), style: 'width: 70px; border-radius: 50%' %>
+                    <%= link_to edit_user_registration_path do %>
+                      <span><%= current_user.profile.last_name.upcase %>, </span>
+                      <span><%= current_user.profile.first_name.capitalize %></span>
+                      <span><%= current_user.profile.middle_name.capitalize %></span>
+                    <% end%>
+                    <div>
+                      <%= link_to "#", class: 'btn btn-outline-dark', style: 'margin-top: 12px' do %>
+                        Upgrade
+                      <% end%>
+                    </div>
+                  </div>
+                  <div class="dropdown-divider"></div>
+                  <% if current_user.profile %>
+                    <%= link_to "Profile", user_path(current_user), class: 'dropdown-item' %>
+                    <%= link_to "Edit Profile", edit_user_profile_path(user_id: current_user.id), class: 'dropdown-item' %>
+                  <% else %>
+                    <%= link_to "Create Profile", new_user_profile_path(current_user), class: 'dropdown-item' %>
+                  <% end %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+                </div>
+              </li>
             <% else %>
+              <li class="nav-item"><%= link_to "About", about_path, class: 'nav-link' %></li>
+              <li class="nav-item"><%= link_to "Contact", new_contact_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to "Login", new_user_session_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to "Get Started", plans_path, class: 'nav-link btn btn-success' %></li>
             <% end %>

@@ -12,9 +12,9 @@
         <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top" %>
         <div class="card-body">
           <div class="card-title">
-            <span><%= @user.profile.first_name %></span>
-            <span><%= @user.profile.middle_name %></span>
-            <span><%= @user.profile.last_name %></span>
+            <span><%= @user.profile.last_name.upcase %>, </span>
+            <span><%= @user.profile.first_name.capitalize %></span>
+            <span><%= @user.profile.middle_name.capitalize %></span>
             <div>
               <%= @user.profile.first_name %> | <%= link_to 'send a message', new_personal_message_path(receiver_id: @user) %>
             </div>

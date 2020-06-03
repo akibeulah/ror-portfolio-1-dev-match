@@ -31,9 +31,9 @@
       <div class="d-flex flex-column" style="margin-left: 8px">
         <div class="d-flex flex-row align-items-center" style="margin-bottom: -15px">
           <%= link_to @user, class: "text-set card-title" do %>
-            <span><%= @user.profile.first_name %></span>
-            <span><%= @user.profile.middle_name %></span>
-            <span><%= @user.profile.last_name %></span>
+            <span><%= @user.profile.last_name.upcase %>, </span>
+            <span><%= @user.profile.first_name.capitalize %></span>
+            <span><%= @user.profile.middle_name.capitalize %></span>
           <% end %>
           <% if user_signed_in? %>
             <% if !(current_user.is_following?(@user)) %>
@@ -93,7 +93,7 @@
   </div>
   <br>
   <br>
-  <%= @post.body %>
+  <%= simple_format @post.body %>
   <br>
   <br>
   <script

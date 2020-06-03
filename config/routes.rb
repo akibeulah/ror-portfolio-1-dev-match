@@ -8,8 +8,7 @@ Rails.application.routes.draw do
     get 'followers' => 'users#followers'
     get 'following' => 'users#following'
   end
-
-  mount Commontator::Engine => '/commontator'
+  
   resource :follows, only: %i[create destroy]
 
   resources :posts do
@@ -18,11 +17,14 @@ Rails.application.routes.draw do
     resources :dislikes
   end
 
+  mount Commontator::Engine => '/commontator'
+  mount ActionCable.server => '/cable'
+
+
   get '/c' => 'conversations#index'
   resources :personal_messages, only: [:new, :create]
   resources :conversations, only: %i[index show]
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :contacts
   get '/plans' => 'pages#plan'
   get '/about' => 'pages#about'
