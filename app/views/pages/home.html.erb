@@ -100,19 +100,19 @@
     <div class="offset-md-1 mg-2" style="max-height: 83vh; background: #fff; overflow: hidden">
       <ul class="nav nav-pills flex-column" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" style="font-size: 1.8rem" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true"><i class="fas fa-th-list"></i></a>
+          <a class="nav-link <%= (params[:c]) ? "" : "active" %>" style="font-size: 1.8rem" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="true"><i class="fas fa-th-list"></i></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" style="font-size: 1.8rem" id="job-tab" data-toggle="tab" href="#job" role="tab" aria-controls="job" aria-selected="false"><i class="fas fa-briefcase"></i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" style="font-size: 1.8rem" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-envelope"></i></a>
+          <a class="nav-link <%= !(params[:c]) ? "" : "active" %>" style="font-size: 1.8rem" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false"><i class="fas fa-envelope"></i></a>
         </li>
       </ul>
     </div>
     <div class="col-md-7" style="background: #fff">
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade mg-2 show active no-scroll" style="max-height: 83vh; overflow: hidden" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+        <div class="tab-pane fade mg-2 <%= (params[:c]) ? "" : "active show" %> no-scroll" style="max-height: 83vh; overflow: hidden" id="posts" role="tabpanel" aria-labelledby="posts-tab">
           <div class="d-flex flex-column justify-content-start no-scroll" style="height: 83vh !important;padding: 12px 0;overflow-y: scroll;" style="width: 100%">
             <% unless @posts.nil? %>
               <% @posts.sort! { |p, q| p.likes.count <=> q.likes.count }.reverse!.each do |p| %>
@@ -165,7 +165,7 @@
           </div>
         </div>
         <div class="tab-pane fade mg-2" id="job" role="tabpanel" aria-labelledby="job-tab">...</div>
-        <div class="tab-pane fade mg-2 no-scroll" style="background: #343a40; min-height: 83vh; overflow: hidden" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane fade mg-2 <%= !(params[:c]) ? "" : "active show" %> no-scroll" style="background: #343a40; min-height: 83vh; overflow: hidden" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row xx w-100 h-100">
             <div class="col-md-4 no-scroll" style="max-height: 75vh; overscroll-y: scroll" id="conversations">
               <%= render @conversations %>

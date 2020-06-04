@@ -17,7 +17,8 @@ gem 'commontator'
 gem 'font-awesome-sass', '~> 5.13.0'
 # Gem for messaging
 gem 'emoji'
-gem 'redis', '~> 3.2'
+gem "coffee-script-source", "~> 1.10.0"
+gem 'redis', '~> 4.0'
 # Gem for pagination
 gem 'pagy', '~> 3.5'
 # Gem for searches

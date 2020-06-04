@@ -4,9 +4,9 @@
   </div>
   <p style="width: fit-content; align-self: flex-end !important">
     <% if personal_message.created_at > 24.hours.ago  %>
-      <%= personal_message.created_at.strftime("%H:%m") %>
+      <span class="text-white"><%= personal_message.created_at.strftime("%H:%m") %></span>
     <% else %>
-      <%= personal_message.created_at.strftime("%b %-d, %Y, %H:%m") %>
+      <span class="text-white"><%= personal_message.created_at.strftime("%b %-d, %Y, %H:%m") %></span>
     <% end %>
   </p>
 <% else %>
@@ -15,9 +15,9 @@
   </div>
   <p style="width: fit-content; align-self: flex-start !important">
     <% if personal_message.created_at > 24.hours.ago  %>
-      <%= personal_message.created_at.strftime("%H:%m") %>
+      <span class="text-white"><%= personal_message.created_at.strftime("%H:%m") %></span>
     <% else %>
-      <%= personal_message.created_at.strftime("%b %-d, %Y, %H:%m") %>
+      <span class="text-white"><%= personal_message.created_at.strftime("%b %-d, %Y, %H:%m") %></span>
     <% end %>
   </p>
 <% end %>

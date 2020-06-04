@@ -1,10 +1,19 @@
-<h1>New message to <%= @receiver.profile.first_name %></h1>
-
-<%= form_for @personal_message do |f| %>
-  <%= hidden_field_tag 'receiver_id', @receiver.id %>
-
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-
-  <%= f.submit %>
-<% end %>
+ 
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header text-center">
+          <h4>New message to <%= @receiver.profile.first_name.capitalize %></h4>
+        </div>
+        <div class="card-body">
+          <%= form_for @personal_message do |f| %>
+            <%= hidden_field_tag 'receiver_id', @receiver.id %>
+            <%= f.text_area :body, class: 'form-control', style: 'margin-bottom: 12px; min-height: 28vh' %>
+            <%= f.button "<i class='fas fa-paper-plane'></i>".html_safe, class: 'btn btn-block btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

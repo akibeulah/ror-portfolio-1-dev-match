@@ -36,7 +36,7 @@
             <span><%= @user.profile.middle_name.capitalize %></span>
           <% end %>
           <% if user_signed_in? %>
-            <% if !(current_user.is_following?(@user)) %>
+            <% if !(current_user.is_following?(@user.id)) %>
               <%= button_to 'Follow', follows_path(user_id: @user.id), class: 'btn-set btn-primary' %>
             <% else %>
               <%= button_to 'Unfollow', follows_path(user_id: @user.id), class: 'btn-set btn-danger', method: :delete %>

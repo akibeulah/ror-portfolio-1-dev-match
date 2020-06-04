@@ -1,6 +1,6 @@
     
 <div id="conversation-main" class="d-flex flex-column justify-content-between" style="min-height: 100%;padding: .5rem;border-left: 1px solid #ccc;">
-  <div id="conversation-body" class="no-scroll d-flex flex-column" style="max-height: 65vh; overflow-y: scroll;">
+  <div id="conversation-body" data-conversation-id="<%= @conversation.id %>" class="no-scroll d-flex flex-column" style="max-height: 65vh; overflow-y: scroll;">
     <%= render @conversation.personal_messages %>
   </div>
   <%= form_for @personal_message do |f| %>
