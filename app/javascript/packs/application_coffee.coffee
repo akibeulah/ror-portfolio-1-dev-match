@@ -1,7 +1,7 @@
-# (function() {
-# 	this.App || (this.App = {});
-# 	App.cable = ActionCable.createConsumer();
-# }).call(this);
+# (->
+#   @App or (@App = {})
+#   App.cable = ActionCable.createConsumer()
+# ).call window
 
 jQuery ->
 	messages_to_bottom = -> messages.scrollTop(messages.prop("scrollHeight"))

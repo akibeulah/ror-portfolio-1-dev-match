@@ -4,19 +4,11 @@
 //= require_self
 //= require_tree ./channels
 //= require commontator/application
+// app/assets/javascripts/cable.js
 
 import './bootstrap_custom.js'
 import "bootstrap"
 import "../stylesheets/application.scss"
-
-window.addEventListener("load", function () {
-  let o = document.querySelectorAll('.chat-track')
-  for (let i = 0; i < o; i++) {
-    o[i].addEventListener('click', function () {
-      console.log(1);
-    });
-  }
-});
 
 $(document).ready(function () {
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
