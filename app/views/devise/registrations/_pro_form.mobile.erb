@@ -1,0 +1,53 @@
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <%= hidden_field_tag :plan, params[:plan] %>
+
+  <div class="field form-group">
+    <%= f.label :email, style: 'font-size: 2rem' %><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password, style: 'font-size: 2rem' %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br/>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password_confirmation, style: 'font-size: 2rem' %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :card_number, "Card Number", style: 'font-size: 2rem' %>
+    <%= text_field_tag :card_number, nil, name: nil, oninput: "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, 19);", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field form-group side-int side-40">
+    <%= f.label :card_code, "Security Code(CVV)", style: 'font-size: 2rem' %><br/>
+      <%= text_field_tag :card_code, nil, name: nil, oninput: "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, 4);", class: "form-control form-control-lg" %>
+  </div>
+
+  <div class="field form-group side-int side-60">
+    <%= f.label :card_month, "Card Expiration", style: 'font-size: 2rem' %><br/>
+    <div class="side-spacing">
+      <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year + 15}, {name: nil, id: "card_year"} %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-dark btn-block", id: "form-submit-btn", style: 'font-size: 2rem' %>
+  </div>
+<% end %>
+
+<script>
+$(document).ready(function () {
+  document.getElementById('card_number').addEventListener('input', function (e) {
+    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
+  });
+});
+</script>

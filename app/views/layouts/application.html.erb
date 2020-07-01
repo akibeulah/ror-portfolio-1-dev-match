@@ -6,10 +6,8 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application_coffee' %>
     <%= javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
-    <script data-ad-client="ca-pub-5604305097706074" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
   </head>
   <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark d-flex flex-column">
@@ -76,11 +74,11 @@
         <% end %>
       </div>
     </nav>
-    <% if current_page?(root_path) && !user_signed_in? %>
+    <% if !user_signed_in? && current_page?(root_path) %>
       <header>
         <div class="overlay"></div>
         <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
-          <source src="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" type="video/mp4">
+          <source src="https://r1---sn-avn7ln7e.c.drive.google.com/videoplayback?expire=1593317679&ei=7-D3Xo3dIdSh0AXunKzoDA&ip=102.67.23.174&cp=QVNOVURfVlZVSlhOOjl0LThvaHd3QzlaTXV1NXd5b3E1Q3RVbVhRTzd1M1E2R2w4ZzlDVEVSNDc&id=600bfe827868f996&itag=22&source=webdrive&requiressl=yes&mh=X7&mm=32&mn=sn-avn7ln7e&ms=su&mv=u&mvi=0&pl=24&sc=yes&ttl=transient&susc=dr&driveid=19fdiSQSbyBW1JlBU65_Pg6oNgM4WEvtB&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=36.524&lmt=1593302024772094&mt=1593302936&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRQIgPeeMhANOOXIf16KGQgVTqL164NgjSKJyUiTwC6dr6skCIQDeoMH2sZIkKOL5C_TfKgPwcFdRcCclyXZftTW5aJSz0g==&lsparams=mh,mm,mn,ms,mv,mvi,pl,sc&lsig=AG3C_xAwRAIgOG3sxg6pRWp82vSASE5B6V1wNwvUlBJyc-fHZY-eCAoCIBBOfYLzjFFE4jE5IeY1Wj2aILi90DdQQcDfkjSOyk4J&cpn=bi_6bCiT5OVvaEDC&c=WEB_EMBEDDED_PLAYER&cver=20200626" type="video/mp4">
         </video>
         <div class="container h-100">
           <div class="d-flex h-100 text-center d-flex flex-column justify-content-center align-items-center">
@@ -97,13 +95,18 @@
     <div>
       <%= yield %>
     </div>
-    <% if current_user %>
-      <%#= link_to 'add', new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' %>
-      <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
-        <i class="fas fa-plus"></i>
+    <% if user_signed_in? %>
+      <% if request_device?(:iphone) || request_device?(:android) %>
+        <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button-mobile btn bg-dark text-light' do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
       <% end %>
     <% end %>
-    <% if !(user_signed_in? && current_page?(root_path)) %>
+    <% if !user_signed_in? && current_page?(root_path) %>
       <div class="footer">
         <div class="footer-child social-links">
           <a class="social-pack" href="https://www.instagram.com/for.luhh/">

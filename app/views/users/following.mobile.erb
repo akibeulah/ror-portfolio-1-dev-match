@@ -1,0 +1,34 @@
+<div class="col-md-10 offset-md-1" style="margin-top: 12px">
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <ul class="list-unstyled list-group-flush row">
+    <% @following.each do |follower| %>
+      <li class="list-group-item col-sm-5 offset-sm-1">
+        <%= link_to follower, class: "card-title" do %>
+          <span><%= follower.profile.last_name.upcase %></span>, 
+          <span><%= follower.profile.first_name %></span>
+          <span><%= follower.profile.middle_name %></span>
+        <% end %>
+        <span class="text-right">
+          <% if !(current_user.is_following?(follower)) %>
+            <% @follow = Follow.new %>
+            <%= form_for (@follow), class: 'text-right' do |f| %>
+              <%= hidden_field_tag :user_id, follower.id %>
+              <%= f.submit "Follow", class: "btn btn-primary" %>
+            <% end %>
+          <% else %>
+            <% @follow = Follow.new %>
+            <%= form_for (@follow), class: 'text-right', method: :delete do |f| %>
+              <%= hidden_field_tag :user_id, follower.id %>
+              <%= f.submit "Unfollow", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+  <div class="d-flex flex-row justify-content-center">
+    <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+</div>

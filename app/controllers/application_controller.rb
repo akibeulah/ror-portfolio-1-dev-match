@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   
   require 'application_responder'
   include Pagy::Backend
+  include Mobylette::RespondToMobileRequests
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

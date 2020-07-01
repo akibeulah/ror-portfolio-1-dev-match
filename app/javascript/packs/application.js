@@ -5,6 +5,7 @@
 //= require_tree ./channels
 //= require commontator/application
 // app/assets/javascripts/cable.js
+//= require rails-ujs
 
 import './bootstrap_custom.js'
 import "bootstrap"
@@ -48,12 +49,6 @@ $(document).ready(function () {
     // Submit form
     f.get(0).submit();
   }
-});
-
-$(document).ready(function () {
-  document.getElementById('card_number').addEventListener('input', function (e) {
-    e.target.value = e.target.value.replace(/[^\dA-Z]/g, '').replace(/(.{4})/g, '$1 ').trim();
-  });
 });
 
 $(function () {

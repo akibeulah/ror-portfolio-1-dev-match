@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
+
 	def home
 		@free_plan = Plan.find(1)
 		@basic_plan = Plan.find(2)
@@ -32,16 +33,8 @@ class PagesController < ApplicationController
 
 			@search = params['search']
 			if @search.present?
-				@users = []
-				user = @search['name'].downcase
-				Profile.where(first_name: user).or(Profile.where(middle_name: user)).or(Profile.where(last_name: user)).each do |p|
-					@users.push(p)
-				end
-			else
-				@users = []
-				current_user.following.each do |u|
-					@users.push(u.profile)
-				end
+				@usersQ = Profile.search("#{@search['name']}:*")
+				@postQ = Post.search("#{@search['name']}:*")
 			end
 			@trends = Post.left_outer_joins(:likes).group(:id).order('COUNT(likes.id) DESC').left_outer_joins(:shares)
 		else

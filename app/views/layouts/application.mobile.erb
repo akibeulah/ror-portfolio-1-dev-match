@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Beulah ROR Portfolio Entry 1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://js.stripe.com/v2/', type: 'text/javascript' %>
+    <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
+  </head>
+  <body>
+    <% if user_signed_in? %>
+      <div class="mobile-nav-b fixed-top">
+        <div class="container d-flex flex-column justify-content-start col-md-10" style="background-color: #212529;">
+          <%= link_to user_path(current_user) do %>
+            <div>
+              <%= image_tag current_user.profile.avatar.url(:small), style: 'margin-left: 30px; width: 100px; border-radius: 50%; padding: 6px' %>
+              <div class="text-white" style="padding-left: 35px; font-size: 2.5rem"><%= current_user.fullname  %></div>
+            </div>
+          <% end %>
+          <br>
+          <div class="d-flex flex-row justify-content-start" style="padding-left: 35px;">
+            <%= link_to user_followers_path(user_id: current_user.id) do %>
+              <span class="text-white" style="font-size: 2.4rem"><%= current_user.followers_count %> <span style="font-size: 2rem; color: #ccc"> followers</span> </span>
+            <% end %>
+            <%= link_to user_following_path(user_id: current_user.id), style: 'margin-left: 10px' do %>
+              <span class="text-white" style="font-size: 2.4rem"><%= current_user.followings_count %> <span style="font-size: 2rem; color: #ccc"> following</span> </span>
+            <% end %>
+          </div>
+          <div class="dropdown-divider"></div>
+          <br>
+          <%= link_to "#", style: "padding-left: 35px;" do %>
+            <div class="btn btn-outline-success" style="font-size: 2.5rem">Upgrade</div>
+          <% end %>
+          <br>
+          <% if current_user.profile %>
+            <%= link_to edit_user_profile_path(user_id: current_user.id), class: 'text-white', style: 'padding-left: 35px;font-size: 2.5rem' do %>
+              <i class='fa fa-user'></i> Profile
+            <% end %>
+            <br>
+          <% else %>
+            <%= link_to new_user_profile_path(current_user), class: 'text-white', style: 'padding-left: 35px; font-size: 2.5rem' do %>
+              <i class="far fa-user">Create Profile</i>
+            <% end %>
+            <br>
+          <% end %>
+          <div class="dropdown-divider"></div>
+          <br>
+          <%= link_to edit_user_registration_path, class: 'text-white', style: 'padding-left: 35px;font-size: 2.5rem' do %>
+            <i class="fa fa-cog"></i>
+            Account Settings
+          <% end %>
+          <br>
+          <%= link_to edit_user_registration_path, class: 'text-white', style: 'padding-left: 35px;font-size: 2.5rem' do %>
+            <i class="fa fa-heart"></i>
+            Liked
+          <% end %>
+          <br>
+          <div class="dropdown-divider"></div>
+          <br>
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'text-white', style: 'padding-left: 35px;font-size: 2.5rem' %><br>
+        </div>
+        <div class="mobile-nav-overlay col-md-2"></div>
+      </div>
+    <% else %>
+      <% if current_page?(root_path) || current_page?(root_path) %>
+        <nav class="mobile-nav-a fixed-bottom">
+          <div class="container">
+            <ul class="navbar-nav d-flex flex-row justify-content-around align-items-center">
+              <li class="nav-item"><%= link_to "Sign In", new_user_session_path, style: 'border-radius: 60px; padding: 1rem 4rem', class: 'mobile-nav-link btn btn-primary primary-shadow' %></li>
+              <li class="nav-item"><%= link_to "Sign Up", plans_path, style: 'border-radius: 60px; padding: 1rem 4rem', class: 'mobile-nav-link btn btn-success success-shadow' %></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <% end%>
+  <% end %>
+  <div class="flash-messages">
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "alert alert-#{key}" %>
+    <% end %>
+  </div>
+  <% if !user_signed_in? && current_page?(root_path) %>
+    <header>
+      <div class="overlay"></div>
+      <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+        <source src="https://r1---sn-avn7ln7e.c.drive.google.com/videoplayback?expire=1593317679&ei=7-D3Xo3dIdSh0AXunKzoDA&ip=102.67.23.174&cp=QVNOVURfVlZVSlhOOjl0LThvaHd3QzlaTXV1NXd5b3E1Q3RVbVhRTzd1M1E2R2w4ZzlDVEVSNDc&id=600bfe827868f996&itag=22&source=webdrive&requiressl=yes&mh=X7&mm=32&mn=sn-avn7ln7e&ms=su&mv=u&mvi=0&pl=24&sc=yes&ttl=transient&susc=dr&driveid=19fdiSQSbyBW1JlBU65_Pg6oNgM4WEvtB&app=explorer&mime=video/mp4&vprv=1&prv=1&dur=36.524&lmt=1593302024772094&mt=1593302936&sparams=expire,ei,ip,cp,id,itag,source,requiressl,ttl,susc,driveid,app,mime,vprv,prv,dur,lmt&sig=AOq0QJ8wRQIgPeeMhANOOXIf16KGQgVTqL164NgjSKJyUiTwC6dr6skCIQDeoMH2sZIkKOL5C_TfKgPwcFdRcCclyXZftTW5aJSz0g==&lsparams=mh,mm,mn,ms,mv,mvi,pl,sc&lsig=AG3C_xAwRAIgOG3sxg6pRWp82vSASE5B6V1wNwvUlBJyc-fHZY-eCAoCIBBOfYLzjFFE4jE5IeY1Wj2aILi90DdQQcDfkjSOyk4J&cpn=bi_6bCiT5OVvaEDC&c=WEB_EMBEDDED_PLAYER&cver=20200626" type="video/mp4">
+      </video>
+      <div class="container h-100">
+        <div class="d-flex h-100 text-center d-flex flex-column justify-content-center align-items-center">
+          <div class="w-100 text-white">
+            <h1 class="display-3">Welcome to Dev Match</h1>
+            <h3 class="lead mb-0">A membership site where entrepreneurs can meet developers.</h3>
+          </div>
+          <%= link_to "Get Started", users_path, class: 'lead mb-0 banner-button' %>
+        </div>
+      </div>
+    </header>
+  <% end %>
+  <div id="modal-holder"></div>
+  <div id="body" style="<%= !user_signed_in? ? "padding-bottom: 139px;" : "" %>">
+    <%= yield %>
+  </div>
+  <% if user_signed_in? %>
+    <% if request_device?(:iphone) || request_device?(:android) %>
+      <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button-mobile btn bg-dark text-light' do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_post_path(user_id: current_user.id), data: { modal: true }, 'data-toggle' => 'modal', class: 'floating-button btn bg-dark text-light' do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if !user_signed_in? && current_page?(root_path) %>
+    <div class="footer" style="padding-bottom: 8vh">
+      <div class="footer-child social-links">
+        <a class="social-pack" href="https://www.instagram.com/for.luhh/">
+          <i class="fab fa-instagram social-link"></i>
+          <i class="fab fa-instagram social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack" href="https://twitter.com/for_luhh">
+          <i class="fab fa-twitter social-link"></i>
+          <i class="fab fa-twitter social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack" href="https://ng.linkedin.com/in/beulah-akindele-8093b9193">
+          <i class="fab fa-linkedin social-link"></i>
+          <i class="fab fa-linkedin social-link social-link-bottom"></i>
+        </a>
+        <a class="social-pack"
+                        href="https://wa.me/+234901427926?text=I%20just%20saw%20your%20site%20and%20I%20am%20interested.">
+          <i class="fab fa-whatsapp social-link"></i>
+          <i class="fab fa-whatsapp social-link social-link-bottom"></i>
+        </a>
+      </div>
+      <div class="copyright footer-child">Beulah Oluwafemi Akindele <span class="orange">&copy;2020</span>
+      </div>
+    </div>
+  <% end %>
+  <script>
+    document.querySelector(".mobile-nav-overlay").addEventListener("click", function() {
+      if (document.querySelector(".mobile-nav-b").classList.contains("mobile-nav-reveal")) document.querySelector(".mobile-nav-b").classList.remove("mobile-nav-reveal")
+    })
+  </script>
+</body>
+</html>
