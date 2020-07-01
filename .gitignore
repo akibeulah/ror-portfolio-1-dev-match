@@ -36,3 +36,4 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+app/views/pages/home.html.erb.tmp
