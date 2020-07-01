@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   mount Commontator::Engine => '/commontator'
   mount ActionCable.server => '/cable'
 
+  resources :search, only: [:index]
 
   get '/c' => 'conversations#index'
   resources :personal_messages, only: [:new, :create]

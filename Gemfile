@@ -16,22 +16,21 @@ gem 'commontator'
 # Gem for font-awesome support
 gem 'font-awesome-sass', '~> 5.13.0'
 # Gem for messaging
-gem 'emoji'
-gem "coffee-script-source", "~> 1.10.0"
 gem 'redis', '~> 4.0'
 # Gem for pagination
 gem 'pagy', '~> 3.5'
 # Gem for searches
 gem 'simple_form'
+# Gem for supporting mobile views
+gem 'mobylette', :git => 'https://github.com/AkiBeulah/mobylette.git'
 # Gem for image management
 gem "paperclip", "~> 6.0.0"
 # Gem for bootstrap form... FML.
 gem 'bootstrap_form'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4.0', group: [:development, :test]
 #Use postgresql as database for production
-group :production do
   gem 'pg'
+  gem 'pg_search'
+group :production do
   gem 'rails_12factor'
 end
 gem 'solargraph', group: :development
@@ -57,8 +56,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
   group :development do
-    gem 'guard', '~> 2.14', '>= 2.14.1'
     gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+    gem 'rack-livereload'
   end
 
 # Use Active Storage variant

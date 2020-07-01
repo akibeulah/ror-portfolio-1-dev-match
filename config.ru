@@ -2,4 +2,7 @@
 
 require_relative 'config/environment'
 
+require "bundler" 
+Bundler.setup(:default)
+
 run Rails.application

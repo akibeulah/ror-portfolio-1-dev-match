@@ -15,8 +15,8 @@ a {
 .chat-link {
   padding: 0.5rem 0.5rem 0rem;
   background: #fff;
-  border-radius: .25rem;
-  margin: .5rem 0;
+  border-radius: 0.25rem;
+  margin: 0.5rem 0;
 }
 
 .chat-link-active {
@@ -28,6 +28,12 @@ a {
 .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #343a40;
+}
+
+.mg-1 {
+  border-left: 1px solid #343a40;
+  border-radius: 0.25rem;
+  padding: 8px;
 }
 
 .mg-2 {
@@ -194,6 +200,17 @@ a {
   border-radius: 50%;
   z-index: 5;
   padding: 1rem 1.5rem;
+  margin: 1rem;
+}
+
+.floating-button-mobile {
+  position: fixed;
+  bottom: 1.5em;
+  right: 0;
+  font-size: 6rem;
+  border-radius: 50%;
+  z-index: 5;
+  padding: 1rem 3rem;
   margin: 1rem;
 }
 
@@ -443,7 +460,8 @@ header .overlay {
 
 @media (pointer: coarse) and (hover: none) {
   header {
-    background: url("https://source.unsplash.com/XT5OInaElMw/1600x900") black no-repeat center center scroll;
+    background: url("https://video-images.vice.com/test-uploads/articles/5ed120e0270e0c00966578a7/lede/1590765307145-GettyImages-1216095283.jpeg?crop=1xw:0.84375xh;center,center")
+      no-repeat center/cover;
   }
   header video {
     display: none;
@@ -451,8 +469,6 @@ header .overlay {
 }
 
 .footer {
-  position: relative;
-  bottom: 0;
   text-transform: uppercase;
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
@@ -554,4 +570,51 @@ header .overlay {
 
 .social-pack:hover {
   background: #333333;
+}
+
+.mobile-nav-item {
+  font-size: 4rem;
+}
+
+.mobile-nav-a {
+  width: 100%;
+  z-index: 1092;
+  height:  8vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color:  #212529;
+}
+
+.mobile-nav-b {
+  width: 100%;
+  z-index: 1092;
+  height:  100vh;
+  display: flex;
+  transform: translateX(-200%);
+  transition: transform .8s ease-in-out;
+}
+
+.mobile-nav-reveal {
+  transform: translateX(0);
+}
+
+.mobile-nav-link {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.mobile-nav-overlay {
+  height: 100vh !important;
+  background-color: rgba(204, 204, 204, 0.469);
+}
+
+.primary-shadow {
+  border-color: #000;
+  box-shadow: 0px 0px 12px #0080ff;
+}
+
+.success-shadow {
+  border-color: #000;
+  box-shadow: 0px 0px 12px #55ff00;
 }

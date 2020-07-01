@@ -24,10 +24,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @user = User.find_by(id: @post.user_id)
+    post = Post.find(params[:id])
+    @user = User.find_by(id: post.user_id)
     
-    commontator_thread_show(@post)
+    commontator_thread(post)
   end
 
   def update

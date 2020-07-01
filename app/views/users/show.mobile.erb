@@ -1,0 +1,87 @@
+<div class="cover-image w-100" style="height: 20vh;background: rgba(255, 118, 118, 0.6);">
+</div>
+<div class="d-flex flex-column align-items-center w-100" style="margin-top: -10vw;">
+  <div style="width: 95% !important; d-flex flex-column">
+    <%= image_tag @user.profile.avatar.url(:medium), class: "card-img-top", style: "width: 20vw; border-radius: 50%" %>
+    <div>
+      <span style="font-size: 2.5rem; font-weight: bolder;"><%= @user.profile.last_name.upcase %>, </span>
+      <span style="font-size: 2.5rem; font-weight: bolder;"><%= @user.profile.first_name.capitalize %></span>
+      <span style="font-size: 2.5rem; font-weight: bolder;"><%= @user.profile.middle_name.capitalize %></span>
+    </div>
+    <div style="font-size: 2.2rem; color: #4f4f4f"><%= @user.profile.job_title.capitalize %></div>
+    <div class="text-dark" style="font-size: 2rem;"><%= @user.profile.description %></div>
+    <% if current_user.plan_id == 3 || current_user.id == @user.id %>
+      <div>
+        <span style="font-size: 1.8rem; color: #000"><%= @user.profile.phone_number %></span>
+      </div>
+      <div>
+        <span style="font-size: 1.8rem; color: #000"><%= @user.profile.contact_email %></span>
+      </div>
+    <% end %>
+    <br>
+    <% if current_user.id == @user.id %>
+      <%= link_to edit_user_profile_path(user_id: current_user.id), class: 'btn btn-outline-dark', style: 'font-size: 2rem' do %>
+        Edit Profile
+      <% end %>
+    <% else %>
+      <div class="text-left d-flex flex-row align-items-center">
+        <% if !(current_user.is_following?(@user)) %>
+          <%= button_to 'Follow', follows_path(user_id: @user.id), style: "font-size: 2rem",class: 'btn btn-outline-primary' %>
+        <% else %>
+          <%= button_to 'Unfollow', follows_path(user_id: @user.id), style: "font-size: 2rem",class: 'btn btn-outline-danger', method: :delete %>
+        <% end %>
+        <%= link_to new_personal_message_path(receiver_id: @user), style: 'margin-left: 4px;font-size: 1.2rem;border-radius: 4rem 4rem;', class: 'btn btn-outline-primary' do %>
+          <i class="fas fa-envelope"></i>
+        <% end %>
+      </div>
+    <% end%>
+    <div class="d-flex flex-row justify-content-start">
+      <%= link_to user_followers_path(user_id: current_user.id) do %>
+        <span class="text-dark" style="font-size: 2.2rem;"><%= current_user.followers_count %> <span style="font-size: 2rem; color: #4f4f4f"> followers</span> </span>
+      <% end %>
+      <%= link_to user_following_path(user_id: current_user.id), style: 'margin-left: 10px' do %>
+        <span class="text-dark" style="font-size: 2.2rem;"><%= current_user.followings_count %> <span style="font-size: 2rem; color: #4f4f4f"> following</span> </span>
+      <% end %>
+    </div>
+  </div>
+  <div class="">
+    <div class="d-flex flex-row flex-wrap justify-content-around">
+      <% @posts.each do |p| %>
+        <div class="card" style="margin-bottom: 12px; width: 20rem">
+          <div class="card-header d-flex flex-row justify-content-between">
+            <h5><%= p.title %></h5>
+            <%= link_to 'Edit', edit_user_post_path(user_id: p.user_id, id: p.id), class: '', style: "margin-right: 4px",method: :put %>
+          </div>
+          <%= image_tag p.image_url, class: "card-img-top" %>
+          <div class="card-body">
+            <h6><%= p.subtitle %></h6>
+          </div>
+          <div class="card-footer d-flex flex-row align-items-center justify-content-between">
+            <span>
+              <span>
+                <i class="fas fa-heart up-solid"></i>
+                <%= p.likes.count %>
+              </span>
+              <span>
+                <i class="fas fa-heart-broken down-solid"></i>
+                <%= p.dislikes.count %>
+              </span>
+              <span>
+                <i class="fas fa-retweet share-solid"></i>
+                <%= p.shares.count %>
+              </span>
+            </span>
+            <span class="d-flex flex-row text-right">
+              <% if current_user.id == p.user_id %>
+                <%= button_to 'Delete', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-danger', style: "margin-right: 4px",method: :delete %>
+              <% end%>
+              <span>
+                <%= link_to 'View', user_post_path(user_id: p.user_id, id: p.id), class: 'btn btn-primary' %>
+              </span>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
